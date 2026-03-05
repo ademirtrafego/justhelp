@@ -129,8 +129,44 @@ body { background:var(--navy); color:var(--white); font-family:'Montserrat',sans
 .rc p { font-size:0.8rem; color:var(--silver); line-height:1.6; }
 
 /* PLANS */
-.plans { background:var(--navy); padding:clamp(52px,7vw,88px) 20px; }
-.plans-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:40px; }
+/* COMO FUNCIONA */
+.steps { background:var(--navy); padding:clamp(52px,7vw,88px) 20px; }
+.steps-grid {
+  display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-top:48px;
+  max-width:760px; margin-left:auto; margin-right:auto;
+}
+.step {
+  display:flex; gap:18px; align-items:flex-start;
+  background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px; padding:24px 22px;
+  transition:border-color 0.3s;
+}
+.step:hover { border-color:rgba(231,76,60,0.35); }
+.step-num {
+  font-family:'Bebas Neue',sans-serif; font-size:2.8rem; color:var(--red);
+  line-height:1; flex-shrink:0; width:36px; text-align:center; opacity:0.85;
+}
+.step-body {}
+.step-title {
+  font-weight:700; font-size:0.95rem; color:var(--white);
+  margin-bottom:6px; line-height:1.3;
+}
+.step-desc {
+  font-size:0.82rem; color:var(--silver); line-height:1.6; opacity:0.8;
+}
+.steps-cta {
+  text-align:center; margin-top:44px;
+}
+.steps-cta a {
+  display:inline-flex; align-items:center; gap:10px;
+  background:var(--green); color:#fff; font-weight:700;
+  font-size:1rem; padding:16px 36px; border-radius:50px;
+  text-decoration:none; transition:all 0.2s;
+  box-shadow:0 4px 20px rgba(37,211,102,0.25);
+}
+.steps-cta a:hover { filter:brightness(1.1); transform:translateY(-2px); }
+.steps-cta a svg { width:20px; height:20px; flex-shrink:0; }
+.steps-note { font-size:0.72rem; color:var(--silver); opacity:0.5; margin-top:12px; }
 .plan {
   border-radius:16px; padding:32px 24px; text-align:center;
   background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
@@ -152,6 +188,7 @@ body { background:var(--navy); color:var(--white); font-family:'Montserrat',sans
 .plan-price { font-family:'Bebas Neue',sans-serif; font-size:3.2rem; color:var(--white); line-height:1; }
 .plan-price span { font-family:'Montserrat',sans-serif; font-size:0.85rem; color:var(--silver); font-weight:600; }
 .plan-period { font-size:0.75rem; color:var(--silver); margin-bottom:20px; }
+.plan-tagline { font-size:0.78rem; color:var(--silver); opacity:0.7; margin-bottom:20px; font-style:italic; }
 .plan-divider { width:40px; height:2px; background:rgba(255,255,255,0.1); margin:0 auto 20px; }
 .plan-features { list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:28px; flex:1; }
 .plan-features li {
@@ -181,6 +218,10 @@ footer {
   font-size:0.73rem; color:rgba(255,255,255,0.22); line-height:1.8;
 }
 footer strong { color:rgba(255,255,255,0.4); }
+.footer-links { display:flex; justify-content:center; flex-wrap:wrap; gap:24px; margin:12px 0 10px; }
+.footer-links a { display:flex; align-items:center; text-decoration:none; transition:opacity 0.2s; opacity:0.6; }
+.footer-links a:hover { opacity:1; }
+.footer-address { display:flex; align-items:flex-start; justify-content:center; gap:5px; font-size:0.72rem; color:rgba(255,255,255,0.3); margin:12px auto 8px; max-width:500px; line-height:1.5; }
 
 /* MOBILE */
 @media(max-width:640px) {
@@ -188,8 +229,8 @@ footer strong { color:rgba(255,255,255,0.4); }
   .hero h1 { font-size:1.8rem; }
   .pain-grid { grid-template-columns:1fr; }
   .rights-cards { grid-template-columns:1fr; }
-  .plans-grid { grid-template-columns:1fr; gap:20px; }
-  .plan.featured { order:-1; }
+  .steps-grid { grid-template-columns:1fr; gap:16px; }
+  
   .quote-box { padding:22px 20px; font-size:0.95rem; }
   .block h2 { font-size:1.55rem; }
 }
@@ -204,8 +245,8 @@ footer strong { color:rgba(255,255,255,0.4); }
   <h1>Seu nome está sujo<br><em>por uma dívida que não é sua?</em></h1>
   <p class="hero-sub">A JustiHelp nasceu para garantir que toda pessoa — independente da renda — tenha acesso à justiça quando seus direitos são violados.</p>
 
-  <a href="#planos" class="scroll-cta">
-    Ver planos de atendimento
+  <a href="#como-funciona" class="scroll-cta">
+    Ver como funciona
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
   </a>
 </section>
@@ -271,55 +312,73 @@ footer strong { color:rgba(255,255,255,0.4); }
   </div>
 </section>
 
-<!-- PLANS -->
-<section class="plans" id="planos">
+<!-- COMO FUNCIONA -->
+<section class="steps" id="como-funciona">
   <div class="block reveal">
-    <div class="eyebrow" style="display:block;margin-bottom:14px;">Acesso à justiça para todos</div>
-    <h2>Escolha o plano<br><em>que cabe no seu bolso</em></h2>
-    <p class="sub">Criamos planos acessíveis porque acreditamos que a renda não pode ser um obstáculo para quem busca seus direitos.</p>
-    <div class="plans-grid">
+    <div class="eyebrow" style="display:block;margin-bottom:14px;">Simples, rápido e 100% digital</div>
+    <h2>Como funciona<br><em>o atendimento</em></h2>
+    <p class="sub">Do primeiro contato à resolução do seu caso — tudo pelo WhatsApp, sem burocracia e sem sair de casa.</p>
 
-      <!-- PLANO ESSENCIAL -->
-      <div class="plan reveal">
-        <div class="plan-name">Essencial</div>
-        <div class="plan-price">R$300<span>/mês</span></div>
-        <div class="plan-period">Contrato mensal · sem fidelidade</div>
-        <div class="plan-divider"></div>
-        <a href="https://wa.me/5511942883457?text=Ol%C3%A1!%20Tenho%20interesse%20no%20plano%20Essencial" class="plan-btn" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.128.558 4.122 1.531 5.853L.057 23.516a.5.5 0 00.611.61l5.682-1.47A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.93 0-3.73-.495-5.302-1.36l-.38-.217-3.938 1.018 1.04-3.83-.233-.393A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-          Quero este plano
-        </a>
-        <div class="plan-note">⏱ Resposta em até 2 minutos</div>
+    <div class="steps-grid">
+
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Manda uma mensagem</div>
+          <div class="step-desc">Entre em contato pelo WhatsApp. Nosso advogado responde em até 2 minutos, 24 horas por dia.</div>
+        </div>
       </div>
 
-      <!-- PLANO COMPLETO (destaque) -->
-      <div class="plan featured reveal">
-        <div class="plan-badge">Mais escolhido</div>
-        <div class="plan-name">Completo</div>
-        <div class="plan-price">R$500<span>/mês</span></div>
-        <div class="plan-period">Contrato mensal · sem fidelidade</div>
-        <div class="plan-divider"></div>
-        <a href="https://wa.me/5511942883457?text=Ol%C3%A1!%20Tenho%20interesse%20no%20plano%20Completo" class="plan-btn" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.128.558 4.122 1.531 5.853L.057 23.516a.5.5 0 00.611.61l5.682-1.47A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.93 0-3.73-.495-5.302-1.36l-.38-.217-3.938 1.018 1.04-3.83-.233-.393A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-          Quero este plano
-        </a>
-        <div class="plan-note">⏱ Resposta em até 2 minutos</div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Análise gratuita do caso</div>
+          <div class="step-desc">Avaliamos sua situação e explicamos seus direitos em linguagem simples. Sem compromisso inicial.</div>
+        </div>
       </div>
 
-      <!-- PLANO PREMIUM -->
-      <div class="plan reveal">
-        <div class="plan-name">Premium</div>
-        <div class="plan-price">R$1.000<span>/mês</span></div>
-        <div class="plan-period">Contrato mensal · sem fidelidade</div>
-        <div class="plan-divider"></div>
-        <a href="https://wa.me/5511942883457?text=Ol%C3%A1!%20Tenho%20interesse%20no%20plano%20Premium" class="plan-btn" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.128.558 4.122 1.531 5.853L.057 23.516a.5.5 0 00.611.61l5.682-1.47A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.93 0-3.73-.495-5.302-1.36l-.38-.217-3.938 1.018 1.04-3.83-.233-.393A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-          Quero este plano
-        </a>
-        <div class="plan-note">⏱ Resposta em até 2 minutos</div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Contrato digital</div>
+          <div class="step-desc">Se decidir avançar, o contrato é assinado digitalmente pelo celular. Sem ir a nenhum escritório.</div>
+        </div>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Acompanhamento em tempo real</div>
+          <div class="step-desc">Você recebe atualizações do seu processo pelo próprio WhatsApp. Transparência em cada etapa.</div>
+        </div>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-title">Nome limpo e indenização</div>
+          <div class="step-desc">Trabalhamos para retirar seu nome dos órgãos de proteção e garantir a indenização que você tem direito.</div>
+        </div>
+      </div>
+
+      <div class="step reveal" style="border-color:rgba(231,76,60,0.3);background:rgba(231,76,60,0.06);">
+        <div class="step-num">24h</div>
+        <div class="step-body">
+          <div class="step-title">Atendimento sem parar</div>
+          <div class="step-desc">Fins de semana, feriados, qualquer horário. Estamos disponíveis quando você precisar.</div>
+        </div>
       </div>
 
     </div>
+
+    <div class="steps-cta">
+      <a href="https://wa.me/5511942883457?text=Ol%C3%A1!%20Quero%20entender%20meus%20direitos" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.128.558 4.122 1.531 5.853L.057 23.516a.5.5 0 00.611.61l5.682-1.47A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.93 0-3.73-.495-5.302-1.36l-.38-.217-3.938 1.018 1.04-3.83-.233-.393A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Quero entender meus direitos
+      </a>
+      <div class="steps-note">Análise gratuita · Resposta em até 2 minutos</div>
+    </div>
+
   </div>
 </section>
 
@@ -341,6 +400,10 @@ footer strong { color:rgba(255,255,255,0.4); }
     <a href="https://www.facebook.com/profile.php?id=61585534714350" target="_blank" rel="noopener">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
     </a>
+  </div>
+  <div class="footer-address">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity:0.5;flex-shrink:0;margin-top:1px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Av. Brigadeiro Faria Lima, 1811 — Esc. 1119, Jardim Paulistano — São Paulo/SP · CEP 01452-001
   </div>
   Site de caráter informativo. Resultados podem variar conforme cada caso.
 </footer>
