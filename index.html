@@ -1115,33 +1115,30 @@ function selectHorario(h) {
   criarEventoCalendar(calSelDate, h);
 }
 
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyDjrdPeBAzm9Kv74M0HundvhmEg92QiGvGFMKSm7CRFku0vjcgcp97h6GZjiX7rXzAWg/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwEjQd-qkAHxfdWE5RrXW-PtSU6p0ZcG3174Vr7tGkLkiYT5P5O7o4yqafTR-nvJMOUdQ/exec';
 
 async function criarEventoCalendar(dateStr, horario) {
   try {
-    const payload = {
-      nome: data.nome,
-      cpf: data.cpf,
-      whatsapp: data.whatsapp,
-      cidade: data.cidade,
-      situacao: data.situacaoLabel,
-      empresa: data.empresa,
-      valor: data.valor,
-      local: data.local,
-      descricao: data.descricao,
+    const params = new URLSearchParams({
+      nome: data.nome || '',
+      cpf: data.cpf || '',
+      whatsapp: data.whatsapp || '',
+      cidade: data.cidade || '',
+      situacao: data.situacaoLabel || '',
+      empresa: data.empresa || '',
+      valor: data.valor || '',
+      local: data.local || '',
+      descricao: data.descricao || '',
       data: dateStr,
       horario: horario
-    };
-
-    // Apps Script não suporta CORS direto — usa no-cors e assume sucesso
-    await fetch(APPS_SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify(payload)
     });
 
-    // Com no-cors não conseguimos ler a resposta, mas se não lançou erro o evento foi criado
+    // GET funciona com no-cors sem problemas de CORS
+    await fetch(APPS_SCRIPT_URL + '?' + params.toString(), {
+      method: 'GET',
+      mode: 'no-cors'
+    });
+
     document.getElementById('calAgendandoMsg').style.display = 'none';
     document.getElementById('calAgendadoMsg').style.display = 'flex';
     document.getElementById('btnStep4').disabled = false;
