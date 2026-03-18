@@ -675,7 +675,133 @@ nav.scrolled .nav-logo img{height:36px}
 
 /* hero-stats removido */
 
-/* ═══ ONDAS ANIMADAS ═══ */
+/* ═══ ADVOGADOS ═══ */
+.adv-section{
+  background:var(--navy);
+  padding:100px 5%;
+  position:relative;overflow:hidden;
+}
+.adv-section::before{
+  content:'';position:absolute;top:0;right:0;
+  width:500px;height:500px;
+  background:radial-gradient(ellipse,rgba(184,150,62,.04) 0%,transparent 65%);
+  pointer-events:none;
+}
+.adv-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;max-width:1200px;margin:0 auto;
+}
+.adv-features{display:flex;flex-direction:column;gap:0;margin:36px 0 40px}
+.adv-feat{
+  display:flex;gap:16px;align-items:flex-start;
+  padding:20px 0;border-bottom:1px solid rgba(255,255,255,.05);
+  transition:padding-left .3s;
+}
+.adv-feat:last-child{border-bottom:none}
+.adv-feat:hover{padding-left:6px}
+.adv-feat-icon{
+  width:40px;height:40px;border-radius:8px;flex-shrink:0;
+  background:rgba(184,150,62,.08);border:1px solid rgba(184,150,62,.15);
+  display:flex;align-items:center;justify-content:center;margin-top:2px;
+  transition:all .3s;
+}
+.adv-feat:hover .adv-feat-icon{background:rgba(184,150,62,.15);border-color:rgba(184,150,62,.3)}
+.adv-feat-icon svg{width:18px;height:18px;stroke:var(--gold2)}
+.adv-feat h4{font-size:.88rem;font-weight:700;margin-bottom:4px}
+.adv-feat p{font-size:.78rem;color:var(--gray);line-height:1.65;font-weight:300}
+
+/* CARD DO ADVOGADO */
+.adv-card-wrap{position:relative;padding:24px 24px 24px 0}
+.adv-card{
+  background:var(--navy2);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:16px;overflow:hidden;
+  position:relative;
+}
+.adv-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--red),var(--gold2));
+}
+.adv-card-header{
+  display:flex;align-items:center;gap:16px;
+  padding:28px 28px 20px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.adv-avatar{
+  width:64px;height:64px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,rgba(200,16,46,.15),rgba(184,150,62,.1));
+  border:2px solid rgba(184,150,62,.2);
+  display:flex;align-items:center;justify-content:center;
+}
+.adv-avatar svg{stroke:var(--gold2)}
+.adv-name{font-size:.95rem;font-weight:700;margin-bottom:2px}
+.adv-oab{font-size:.68rem;color:var(--gold2);font-weight:600;letter-spacing:.5px;margin-bottom:4px}
+.adv-stars{font-size:.8rem;color:var(--gold2);letter-spacing:2px}
+.adv-stars span{color:var(--gray);font-size:.72rem;letter-spacing:0;margin-left:4px}
+
+.adv-card-stat-row{
+  display:flex;align-items:center;
+  padding:20px 28px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  background:rgba(255,255,255,.02);
+}
+.adv-card-stat{flex:1;text-align:center}
+.adv-card-divider{width:1px;height:36px;background:rgba(255,255,255,.08)}
+.adv-stat-num{font-size:1.3rem;font-weight:800;color:var(--gold2);letter-spacing:-.5px;line-height:1}
+.adv-stat-label{font-size:.58rem;color:var(--gray);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px}
+
+.adv-card-body{padding:20px 28px;border-bottom:1px solid rgba(255,255,255,.05)}
+.adv-card-label{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:12px}
+.adv-tags{display:flex;flex-wrap:wrap;gap:8px}
+.adv-tag{
+  font-size:.68rem;font-weight:600;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:20px;padding:5px 12px;color:rgba(255,255,255,.7);
+  transition:all .2s;
+}
+.adv-tag:hover{background:rgba(200,16,46,.08);border-color:rgba(200,16,46,.2);color:#fff}
+
+.adv-card-quote{
+  padding:20px 28px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  display:flex;gap:12px;align-items:flex-start;
+}
+.adv-card-quote p{font-size:.8rem;color:var(--gray);line-height:1.7;font-style:italic;font-weight:300}
+
+.adv-card-badge{
+  padding:14px 28px;
+  display:flex;align-items:center;gap:8px;
+  font-size:.72rem;font-weight:600;color:var(--gold2);
+}
+
+/* CASES FLUTUANTES */
+.adv-case{
+  position:absolute;
+  background:var(--navy);border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;padding:10px 14px;
+  display:flex;align-items:center;gap:10px;
+  box-shadow:0 8px 32px rgba(0,0,0,.4);
+  white-space:nowrap;
+}
+.adv-case-1{bottom:-16px;left:-20px}
+.adv-case-2{top:20px;right:-20px}
+.adv-case-icon{
+  width:28px;height:28px;border-radius:6px;
+  background:rgba(37,211,102,.12);color:#25d366;
+  font-size:.75rem;font-weight:800;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.adv-case-title{font-size:.72rem;font-weight:700;line-height:1}
+.adv-case-sub{font-size:.62rem;color:var(--gray);margin-top:2px}
+
+@media(max-width:1024px){
+  .adv-inner{grid-template-columns:1fr;gap:48px}
+  .adv-case{display:none}
+}
+@media(max-width:768px){
+  .adv-section{padding:64px 5%}
+  .adv-card-wrap{padding:0}
+}
 @keyframes waveMove1{0%{transform:translateX(0) scaleY(1)}50%{transform:translateX(-60px) scaleY(1.08)}100%{transform:translateX(0) scaleY(1)}}
 @keyframes waveMove2{0%{transform:translateX(0) scaleY(1)}50%{transform:translateX(60px) scaleY(.92)}100%{transform:translateX(0) scaleY(1)}}
 @keyframes waveMove3{0%{transform:translateX(0) scaleY(1)}50%{transform:translateX(-40px) scaleY(1.05)}100%{transform:translateX(0) scaleY(1)}}
@@ -1799,33 +1925,142 @@ header img { height: 52px; }
   </div>
 </section>
 
-<!-- NÚMEROS -->
-<div class="numbers" id="resultados">
-  <div class="numbers-inner">
-    <div class="number-item reveal">
-      <div class="number-val"><span id="n1">0</span><span class="nunit">+</span></div>
-      <div class="number-label">Casos resolvidos</div>
+<!-- ADVOGADOS -->
+<section class="adv-section">
+  <div class="adv-inner">
+
+    <!-- LADO ESQUERDO: TEXTO -->
+    <div class="adv-text reveal-left">
+      <div class="section-label">Quem cuida do seu caso</div>
+      <h2 class="section-title">Advogado real.<br><em>Processo de verdade.</em></h2>
+      <p class="section-sub">Tem dívida que não sai na conversa — só com processo. Por isso cada caso na JustHelp é acompanhado de perto por um advogado inscrito na OAB, do início até o resultado.</p>
+
+      <div class="adv-features">
+        <div class="adv-feat">
+          <div class="adv-feat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          </div>
+          <div>
+            <h4>OAB verificável</h4>
+            <p>Não é robô, não é chatbot. É um advogado real com número de registro ativo na Ordem dos Advogados do Brasil.</p>
+          </div>
+        </div>
+        <div class="adv-feat">
+          <div class="adv-feat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <h4>Acompanhamento passo a passo</h4>
+            <p>Você recebe atualização de cada etapa do processo. Nada acontece sem você saber.</p>
+          </div>
+        </div>
+        <div class="adv-feat">
+          <div class="adv-feat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div>
+            <h4>Quando só o processo resolve</h4>
+            <p>Algumas dívidas não saem de forma amigável. Nesses casos o advogado entra com ação judicial e garante a remoção e, quando cabível, a indenização.</p>
+          </div>
+        </div>
+        <div class="adv-feat">
+          <div class="adv-feat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div>
+            <h4>Indenização quando há direito</h4>
+            <p>Negativação indevida gera direito à indenização. O advogado identifica e cobra os danos morais — valores médios de R$ 3.000 a R$ 15.000.</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="#" onclick="abrirTriagem();return false;" class="btn-primary" style="display:inline-flex;width:auto;padding:16px 36px;margin-top:8px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Falar com advogado agora
+      </a>
     </div>
-    <div class="number-divider"></div>
-    <div class="number-item reveal">
-      <div class="number-val"><span class="nprefix">R$ </span><span id="n2">0</span><span class="nunit">k</span></div>
-      <div class="number-label">Em indenizações</div>
+
+    <!-- LADO DIREITO: CARD DO ADVOGADO -->
+    <div class="adv-card-wrap reveal-right">
+      <div class="adv-card">
+        <div class="adv-card-header">
+          <div class="adv-avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <div class="adv-name">Dr. Especialista JustHelp</div>
+            <div class="adv-oab">OAB/SP — Inscrito e verificável</div>
+            <div class="adv-stars">★★★★★ <span>4.9</span></div>
+          </div>
+        </div>
+
+        <div class="adv-card-stat-row">
+          <div class="adv-card-stat">
+            <div class="adv-stat-num">847+</div>
+            <div class="adv-stat-label">Casos resolvidos</div>
+          </div>
+          <div class="adv-card-divider"></div>
+          <div class="adv-card-stat">
+            <div class="adv-stat-num">R$512k</div>
+            <div class="adv-stat-label">Em indenizações</div>
+          </div>
+          <div class="adv-card-divider"></div>
+          <div class="adv-card-stat">
+            <div class="adv-stat-num">30d</div>
+            <div class="adv-stat-label">Prazo máximo</div>
+          </div>
+        </div>
+
+        <div class="adv-card-body">
+          <div class="adv-card-label">Áreas de atuação</div>
+          <div class="adv-tags">
+            <span class="adv-tag">Negativação Indevida</span>
+            <span class="adv-tag">Danos Morais</span>
+            <span class="adv-tag">Direito do Consumidor</span>
+            <span class="adv-tag">Limpeza de Nome</span>
+            <span class="adv-tag">Fraude de CPF</span>
+          </div>
+        </div>
+
+        <div class="adv-card-quote">
+          <svg viewBox="0 0 24 24" fill="var(--gold2)" width="20" height="20"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+          <p>Cada caso é único. Antes de qualquer coisa, analisamos sua situação para garantir a melhor estratégia — seja remoção direta, ação judicial ou indenização por danos morais.</p>
+        </div>
+
+        <div class="adv-card-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Processo acompanhado do início ao fim
+        </div>
+      </div>
+
+      <!-- CASES FLUTUANTES -->
+      <div class="adv-case adv-case-1 float-badge">
+        <div class="adv-case-icon">✓</div>
+        <div>
+          <div class="adv-case-title">Caso resolvido</div>
+          <div class="adv-case-sub">Nome limpo em 22 dias — SP</div>
+        </div>
+      </div>
+      <div class="adv-case adv-case-2 float-badge" style="animation-delay:.8s">
+        <div class="adv-case-icon" style="background:rgba(184,150,62,.15);color:var(--gold2)">R$</div>
+        <div>
+          <div class="adv-case-title">Indenização paga</div>
+          <div class="adv-case-sub">R$ 8.000 por danos morais</div>
+        </div>
+      </div>
     </div>
-    <div class="number-divider"></div>
-    <div class="number-item reveal">
-      <div class="number-val"><span id="n3">0</span><span class="nunit"> dias</span></div>
-      <div class="number-label">Prazo máximo</div>
-    </div>
-    <div class="number-divider"></div>
-    <div class="number-item reveal">
-      <div class="number-val"><span id="n4">0</span><span class="nunit">/5</span></div>
-      <div class="number-label">Avaliação média</div>
-    </div>
+
   </div>
-</div>
+</section>
 
 <!-- DEPOIMENTOS -->
 <section class="testimonials">
+<div style="text-align:center;margin-bottom:20px" class="reveal">
+  <div class="section-label" style="justify-content:center">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="20 6 9 17 4 12"/></svg>
+    847 casos resolvidos no Brasil
+  </div>
+</div>
   <div class="testi-header">
     <div>
       <div class="section-label reveal">Depoimentos</div>
