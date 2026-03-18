@@ -3,9 +3,847 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JustHelp — Análise</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<title>Limpar Nome no SPC e Serasa | JustHelp — A partir de R$ 500</title>
+<meta name="description" content="Limpe seu nome no SPC e Serasa em até 30 dias a partir de R$ 500. Dívidas acima de R$ 20.000. Negativação indevida com indenização de até R$ 15.000. Análise gratuita.">
+<meta name="keywords" content="limpar nome spc serasa, limpa nome, negativação indevida, indenização, nome sujo">
+<link rel="canonical" href="https://justhelpbr.com.br/">
+<meta property="og:title" content="Limpar Nome no SPC e Serasa | JustHelp">
+<meta property="og:description" content="Nome limpo em até 30 dias a partir de R$ 500. Análise gratuita.">
+<meta property="og:url" content="https://justhelpbr.com.br/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
+:root {
+  --navy: #050b18;
+  --navy2: #0a1628;
+  --navy3: #0f2040;
+  --red: #c8102e;
+  --red2: #e8152f;
+  --gold: #b8963e;
+  --gold2: #d4af5a;
+  --white: #ffffff;
+  --gray: #8a9bb5;
+  --light: #e8eef5;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:'Poppins',sans-serif;overflow-x:hidden}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--navy)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideRight{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideLeft{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(200,16,46,.4)}70%{box-shadow:0 0 0 16px rgba(200,16,46,0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes countUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes lineGrow{from{width:0}to{width:100%}}
+@keyframes rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes menuIn{from{opacity:0;transform:translateX(100%)}to{opacity:1;transform:translateX(0)}}
+@keyframes menuOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(100%)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes glowPulse{0%,100%{opacity:.4}50%{opacity:1}}
+@keyframes typewriter{from{width:0}to{width:100%}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+@keyframes borderFlow{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+
+/* ═══ MENU MOBILE ═══ */
+.mobile-menu{
+  position:fixed;top:0;right:0;bottom:0;width:100%;max-width:360px;
+  background:var(--navy2);z-index:200;
+  display:flex;flex-direction:column;
+  padding:0;
+  transform:translateX(100%);
+  transition:transform .4s cubic-bezier(.4,0,.2,1);
+  border-left:1px solid rgba(184,150,62,.15);
+  box-shadow:-20px 0 60px rgba(0,0,0,.5);
+}
+.mobile-menu.open{transform:translateX(0)}
+.mobile-menu-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:24px 28px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  flex-shrink:0;
+}
+.mobile-menu-header img{height:36px}
+.menu-close{
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,.06);border:none;
+  color:#fff;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s;
+}
+.menu-close:hover{background:rgba(255,255,255,.12)}
+.mobile-menu-links{
+  display:flex;flex-direction:column;padding:32px 28px;gap:4px;flex:1;
+}
+.mobile-menu-links a{
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:1.1rem;font-weight:500;color:rgba(255,255,255,.75);
+  text-decoration:none;padding:16px 0;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  transition:all .2s;
+}
+.mobile-menu-links a:hover{color:#fff;padding-left:8px}
+.mobile-menu-links a svg{opacity:.4}
+.mobile-menu-footer{
+  padding:28px;
+  border-top:1px solid rgba(255,255,255,.06);
+  flex-shrink:0;
+}
+.mobile-menu-cta{
+  display:block;text-align:center;
+  background:var(--red);color:#fff;
+  font-size:.9rem;font-weight:700;letter-spacing:.5px;
+  padding:16px;border-radius:2px;text-decoration:none;
+  margin-bottom:16px;transition:all .2s;
+}
+.mobile-menu-cta:hover{background:var(--red2)}
+.mobile-menu-contact{font-size:.78rem;color:var(--gray);text-align:center}
+.mobile-menu-contact a{color:var(--gold2);text-decoration:none}
+
+/* OVERLAY */
+.menu-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:199;
+  opacity:0;pointer-events:none;transition:opacity .4s;
+  backdrop-filter:blur(4px);
+}
+.menu-overlay.open{opacity:1;pointer-events:all}
+
+/* HAMBURGER ANIMADO */
+.hamburger{
+  display:none;flex-direction:column;gap:5px;
+  cursor:pointer;padding:8px;z-index:10;
+  background:rgba(255,255,255,.06);border-radius:4px;
+  border:1px solid rgba(255,255,255,.08);
+  transition:all .2s;
+}
+.hamburger:hover{background:rgba(255,255,255,.1)}
+.hamburger span{
+  width:22px;height:2px;background:#fff;
+  border-radius:2px;
+  transition:all .35s cubic-bezier(.4,0,.2,1);
+  display:block;
+}
+.hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ═══ TRIAGEM MODAL ═══ */
+.triagem-modal{
+  position:fixed;inset:0;z-index:300;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s;
+}
+.triagem-modal.open{opacity:1;pointer-events:all}
+.triagem-overlay{
+  position:absolute;inset:0;
+  background:rgba(5,11,24,.92);
+  backdrop-filter:blur(12px);
+}
+.triagem-box{
+  position:relative;z-index:1;
+  background:var(--navy2);
+  border:1px solid rgba(184,150,62,.15);
+  border-radius:4px;
+  width:100%;max-width:520px;
+  max-height:90vh;overflow-y:auto;
+  animation:scaleIn .3s ease both;
+}
+.triagem-header{
+  padding:28px 32px 20px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.triagem-header h3{
+  font-family:'Montserrat',sans-serif;
+  font-size:1.6rem;font-weight:600;
+}
+.triagem-close{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.06);border:none;
+  color:#fff;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s;flex-shrink:0;
+}
+.triagem-close:hover{background:rgba(255,255,255,.12)}
+.triagem-body{padding:32px}
+.triagem-step{display:none}
+.triagem-step.active{display:block;animation:fadeUp .3s ease}
+.triagem-q{
+  font-size:.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:20px;
+}
+.triagem-title{
+  font-family:'Montserrat',sans-serif;
+  font-size:1.8rem;font-weight:600;line-height:1.2;
+  margin-bottom:8px;
+}
+.triagem-sub{font-size:.85rem;color:var(--gray);margin-bottom:28px;font-weight:300}
+.triagem-options{display:flex;flex-direction:column;gap:10px}
+.triagem-opt{
+  display:flex;align-items:center;gap:14px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:2px;padding:16px 18px;
+  cursor:pointer;transition:all .2s;text-align:left;width:100%;
+  color:#fff;font-family:'Poppins',sans-serif;
+}
+.triagem-opt:hover{background:rgba(200,16,46,.08);border-color:rgba(200,16,46,.3)}
+.triagem-opt.selected{background:rgba(200,16,46,.1);border-color:var(--red)}
+.triagem-opt-icon{
+  width:40px;height:40px;border-radius:2px;flex-shrink:0;
+  background:rgba(200,16,46,.1);border:1px solid rgba(200,16,46,.2);
+  display:flex;align-items:center;justify-content:center;
+}
+.triagem-opt-icon svg{width:18px;height:18px;color:var(--red2)}
+.triagem-opt-text h4{font-size:.9rem;font-weight:600;margin-bottom:2px}
+.triagem-opt-text p{font-size:.75rem;color:var(--gray);font-weight:300}
+.triagem-progress{
+  display:flex;gap:6px;margin-bottom:28px;
+}
+.triagem-prog-dot{
+  height:3px;flex:1;border-radius:2px;
+  background:rgba(255,255,255,.08);transition:background .3s;
+}
+.triagem-prog-dot.done{background:var(--gold2)}
+.triagem-prog-dot.active{background:var(--red)}
+
+/* BIFURCAÇÃO */
+.triagem-paths{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+.triagem-path{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:2px;padding:24px 20px;
+  cursor:pointer;text-align:center;transition:all .3s;
+  text-decoration:none;display:block;color:#fff;
+}
+.triagem-path.red-path{
+  background:rgba(200,16,46,.06);
+  border-color:rgba(200,16,46,.2);
+}
+.triagem-path.red-path:hover{background:rgba(200,16,46,.15);transform:translateY(-3px)}
+.triagem-path.green-path{
+  background:rgba(37,211,102,.05);
+  border-color:rgba(37,211,102,.15);
+}
+.triagem-path.green-path:hover{background:rgba(37,211,102,.12);transform:translateY(-3px)}
+.triagem-path .path-icon{font-size:2rem;margin-bottom:12px}
+.triagem-path h4{font-size:.9rem;font-weight:700;margin-bottom:6px}
+.triagem-path p{font-size:.72rem;color:var(--gray);line-height:1.5;font-weight:300}
+.triagem-path .path-price{
+  font-size:.75rem;font-weight:700;margin-top:10px;padding:4px 10px;
+  border-radius:20px;display:inline-block;
+}
+.red-path .path-price{background:rgba(200,16,46,.15);color:var(--red2)}
+.green-path .path-price{background:rgba(37,211,102,.1);color:#25d366}
+
+/* ANIMAÇÕES EXTRAS */
+.glow-text{
+  background:linear-gradient(90deg,#fff 0%,var(--gold2) 50%,#fff 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  animation:shimmer 3s linear infinite;
+}
+.float-badge{animation:float 4s ease-in-out infinite}
+.hero-tag{animation:fadeUp .6s ease both}
+.hero h1{font-weight:800;animation:fadeUp .7s .1s ease both}
+.hero-sub{animation:fadeUp .7s .2s ease both}
+.hero-actions{animation:fadeUp .7s .3s ease both}
+
+
+/* OBSERVE ANIMATION */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .8s ease,transform .8s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+
+/* ═══ NAV ═══ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:0 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  height:80px;
+  background:rgba(5,11,24,0);
+  backdrop-filter:blur(0px);
+  border-bottom:1px solid rgba(255,255,255,0);
+  transition:all .4s ease;
+}
+nav.scrolled{
+  background:rgba(5,11,24,.95);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(184,150,62,.15);
+  height:68px;
+}
+.nav-logo img{height:44px;transition:height .3s}
+nav.scrolled .nav-logo img{height:36px}
+.nav-links{display:flex;align-items:center;gap:36px}
+.nav-links a{
+  font-size:.82rem;font-weight:500;color:rgba(255,255,255,.7);
+  text-decoration:none;letter-spacing:.5px;text-transform:uppercase;
+  transition:color .2s;position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;
+  background:var(--gold2);transition:width .3s;
+}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  background:var(--red);color:#fff;
+  font-size:.8rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;
+  padding:12px 28px;border-radius:2px;text-decoration:none;
+  transition:all .2s;border:1px solid var(--red);
+}
+.nav-cta:hover{background:transparent;color:var(--red)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:24px;height:2px;background:#fff;transition:all .3s}
+
+/* ═══ HERO ═══ */
+.hero{
+  min-height:100vh;position:relative;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(135deg, rgba(5,11,24,1) 0%, rgba(5,11,24,.85) 50%, rgba(5,11,24,.7) 100%),
+    url('https://images.pexels.com/photos/5668772/pexels-photo-5668772.jpeg?auto=compress&cs=tinysrgb&w=1800') center/cover no-repeat;
+}
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right, rgba(5,11,24,1) 40%, transparent 100%);
+}
+.hero-lines{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(184,150,62,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(184,150,62,.04) 1px,transparent 1px);
+  background-size:80px 80px;
+}
+.hero-content{
+  position:relative;z-index:2;
+  padding:140px 5% 60px;
+  max-width:860px;
+  flex:1;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(184,150,62,.1);border:1px solid rgba(184,150,62,.25);
+  border-radius:2px;padding:8px 18px;margin-bottom:32px;
+  width:fit-content;
+  animation:fadeUp .8s ease both;
+}
+.hero-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--gold2);animation:pulse 2s infinite}
+.hero-tag span{font-size:.72rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold2)}
+
+.hero h1{font-weight:800;
+  font-family:'Montserrat',sans-serif;
+  font-size:clamp(2.2rem,5.5vw,4.5rem);
+  font-weight:600;line-height:1.05;
+  letter-spacing:-.3px;
+  margin-bottom:24px;
+  animation:fadeUp .8s .1s ease both;
+}
+.hero h1 .accent{color:var(--gold2)}
+.hero h1 .red{color:var(--red2)}
+
+.hero-sub{
+  font-size:clamp(.9rem,1.6vw,1.1rem);
+  color:rgba(255,255,255,.65);
+  line-height:1.75;
+  max-width:560px;
+  margin-bottom:40px;
+  font-weight:300;
+  animation:fadeUp .8s .2s ease both;
+}
+.hero-sub strong{color:#fff;font-weight:600}
+
+.hero-actions{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  animation:fadeUp .8s .3s ease both;
+}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--red);color:#fff;
+  font-size:.88rem;font-weight:600;letter-spacing:.5px;
+  padding:16px 32px;border-radius:2px;text-decoration:none;
+  transition:all .25s;border:1px solid var(--red);
+  animation:pulse 3s ease-in-out infinite;
+}
+.btn-primary:hover{background:transparent;color:var(--red);animation:none}
+.btn-primary svg{width:16px;height:16px;flex-shrink:0}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:10px;
+  color:rgba(255,255,255,.7);font-size:.85rem;font-weight:500;
+  text-decoration:none;transition:color .2s;
+}
+.btn-secondary:hover{color:#fff}
+.btn-secondary svg{width:18px;height:18px}
+
+/* hero-stats removido */
+
+/* ═══ ONDAS ANIMADAS ═══ */
+@keyframes waveMove1{0%{transform:translateX(0) scaleY(1)}50%{transform:translateX(-60px) scaleY(1.08)}100%{transform:translateX(0) scaleY(1)}}
+@keyframes waveMove2{0%{transform:translateX(0) scaleY(1)}50%{transform:translateX(60px) scaleY(.92)}100%{transform:translateX(0) scaleY(1)}}
+@keyframes waveMove3{0%{transform:translateX(0) scaleY(1)}50%{transform:translateX(-40px) scaleY(1.05)}100%{transform:translateX(0) scaleY(1)}}
+@keyframes bgPulse{0%,100%{opacity:.6}50%{opacity:1}}
+
+.waves-container{
+  position:absolute;bottom:0;left:0;right:0;z-index:1;
+  overflow:hidden;height:280px;pointer-events:none;
+}
+.wave{
+  position:absolute;bottom:0;left:-5%;width:110%;height:100%;
+}
+.wave1{animation:waveMove1 8s ease-in-out infinite;bottom:-20px}
+.wave2{animation:waveMove2 11s ease-in-out infinite;bottom:-40px}
+.wave3{animation:waveMove3 14s ease-in-out infinite;bottom:-10px}
+
+/* GLOW FLUTUANTE NO BACKGROUND */
+.bg-orb{
+  position:fixed;border-radius:50%;
+  pointer-events:none;z-index:-1;filter:blur(80px);
+  animation:bgPulse 6s ease-in-out infinite;
+}
+.bg-orb-1{
+  width:500px;height:500px;
+  top:-100px;left:-100px;
+  background:radial-gradient(ellipse,rgba(200,16,46,.06),transparent 70%);
+}
+.bg-orb-2{
+  width:400px;height:400px;
+  bottom:200px;right:-80px;
+  background:radial-gradient(ellipse,rgba(184,150,62,.05),transparent 70%);
+  animation-delay:3s;
+}
+.bg-orb-3{
+  width:300px;height:300px;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  background:radial-gradient(ellipse,rgba(200,16,46,.03),transparent 70%);
+  animation-delay:1.5s;
+}
+
+/* ═══ URGENCY BANNER ═══ */
+.urgency{
+  background:var(--red);
+  padding:14px 5%;
+  display:flex;align-items:center;justify-content:center;gap:16px;
+}
+.urgency-icon{width:20px;height:20px;flex-shrink:0}
+.urgency p{font-size:.8rem;font-weight:500;letter-spacing:.3px;text-align:center}
+.urgency strong{font-weight:700}
+
+/* ═══ SECTION BASE ═══ */
+section{padding:120px 5%}
+.section-label{
+  font-size:.65rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:16px;
+  display:flex;align-items:center;gap:12px;
+}
+.section-label::before{content:'';width:32px;height:1px;background:var(--gold2)}
+.section-title{
+  font-family:'Montserrat',sans-serif;
+  font-size:clamp(1.8rem,4vw,3rem);
+  font-weight:600;line-height:1.1;
+  letter-spacing:-.3px;margin-bottom:20px;
+}
+.section-title em{font-style:italic;color:var(--gold2)}
+.section-sub{font-size:1rem;color:var(--gray);line-height:1.75;max-width:540px;font-weight:300}
+
+/* ═══ PAIN SECTION ═══ */
+.pain{background:var(--navy2);position:relative;overflow:hidden}
+.pain::before{
+  content:'';position:absolute;top:0;right:0;
+  width:600px;height:600px;
+  background:radial-gradient(ellipse,rgba(200,16,46,.06) 0%,transparent 65%);
+}
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.pain-image{position:relative}
+.pain-image img{
+  width:100%;height:560px;object-fit:cover;
+  border-radius:2px;filter:brightness(.85);
+}
+.pain-image-overlay{
+  position:absolute;bottom:32px;left:-32px;
+  background:var(--navy);border:1px solid rgba(184,150,62,.2);
+  border-radius:2px;padding:20px 24px;
+  backdrop-filter:blur(20px);
+}
+.pain-image-overlay .num{
+  font-family:'Montserrat',sans-serif;
+  font-size:2.8rem;font-weight:700;color:var(--red2);line-height:1;
+}
+.pain-image-overlay .txt{font-size:.72rem;color:var(--gray);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px}
+.pain-list{display:flex;flex-direction:column;gap:0}
+.pain-item{
+  display:flex;align-items:flex-start;gap:20px;
+  padding:24px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  transition:all .3s;cursor:default;
+}
+.pain-item:last-child{border-bottom:none}
+.pain-item:hover{padding-left:8px}
+.pain-icon{
+  width:44px;height:44px;border-radius:2px;
+  background:rgba(200,16,46,.1);border:1px solid rgba(200,16,46,.2);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:all .3s;
+}
+.pain-item:hover .pain-icon{background:rgba(200,16,46,.2);border-color:rgba(200,16,46,.4)}
+.pain-icon svg{width:20px;height:20px;color:var(--red2)}
+.pain-text h4{font-size:.95rem;font-weight:600;margin-bottom:4px}
+.pain-text p{font-size:.82rem;color:var(--gray);line-height:1.6;font-weight:300}
+
+/* ═══ SERVICES ═══ */
+.services{background:var(--navy);position:relative}
+.services-header{text-align:center;margin-bottom:72px}
+.services-header .section-label{justify-content:center}
+.services-header .section-label::before{display:none}
+.services-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.service-card{
+  background:var(--navy2);
+  padding:56px 48px;
+  position:relative;overflow:hidden;
+  transition:all .4s;
+  border:1px solid rgba(255,255,255,.04);
+}
+.service-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--red),var(--gold2));
+  transform:scaleX(0);transform-origin:left;transition:transform .5s;
+}
+.service-card:hover{background:rgba(15,32,64,.8);transform:translateY(-4px)}
+.service-card:hover::before{transform:scaleX(1)}
+.service-card.featured{
+  background:linear-gradient(145deg,rgba(200,16,46,.08),var(--navy2));
+  border-color:rgba(200,16,46,.15);
+}
+.service-card.featured::before{transform:scaleX(1)}
+.service-badge{
+  display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;padding:5px 14px;border-radius:1px;
+  margin-bottom:24px;
+}
+.badge-red{background:rgba(200,16,46,.15);border:1px solid rgba(200,16,46,.25);color:var(--red2)}
+.badge-gold{background:rgba(184,150,62,.1);border:1px solid rgba(184,150,62,.2);color:var(--gold2)}
+.service-card h3{
+  font-family:'Montserrat',sans-serif;
+  font-size:1.9rem;font-weight:600;line-height:1.15;
+  margin-bottom:16px;letter-spacing:-.3px;
+}
+.service-card p{font-size:.88rem;color:var(--gray);line-height:1.75;margin-bottom:32px;font-weight:300}
+.service-features{display:flex;flex-direction:column;gap:10px;margin-bottom:36px}
+.sf{display:flex;align-items:center;gap:10px;font-size:.82rem;color:rgba(255,255,255,.75)}
+.sf svg{width:14px;height:14px;color:var(--gold2);flex-shrink:0}
+.service-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.82rem;font-weight:600;color:var(--red2);
+  text-decoration:none;letter-spacing:.3px;
+  transition:gap .2s;
+}
+.service-cta:hover{gap:14px}
+
+/* ═══ HOW IT WORKS ═══ */
+.how{
+  background:var(--navy2);position:relative;overflow:hidden;
+}
+.how::before{
+  content:'';position:absolute;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  width:800px;height:600px;
+  background:radial-gradient(ellipse,rgba(184,150,62,.04) 0%,transparent 65%);
+}
+.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.how-steps{display:flex;flex-direction:column;gap:0}
+.how-step{
+  display:flex;gap:24px;padding:28px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  transition:all .3s;
+}
+.how-step:last-child{border-bottom:none}
+.how-step-num{
+  font-family:'Montserrat',sans-serif;
+  font-size:3.5rem;font-weight:700;
+  color:rgba(184,150,62,.15);line-height:1;
+  flex-shrink:0;width:60px;
+  transition:color .3s;
+}
+.how-step:hover .how-step-num{color:rgba(184,150,62,.4)}
+.how-step-content h4{font-size:1rem;font-weight:600;margin-bottom:6px;margin-top:8px}
+.how-step-content p{font-size:.83rem;color:var(--gray);line-height:1.65;font-weight:300}
+.how-image{position:relative}
+.how-image img{
+  width:100%;height:600px;object-fit:cover;
+  border-radius:2px;filter:brightness(.8);
+}
+.how-image-card{
+  position:absolute;top:40px;right:-24px;
+  background:var(--navy);border:1px solid rgba(184,150,62,.2);
+  border-radius:2px;padding:20px 24px;width:200px;
+}
+.how-image-card .label{font-size:.6rem;text-transform:uppercase;letter-spacing:2px;color:var(--gray);margin-bottom:8px}
+.how-image-card .value{font-family:'Montserrat',sans-serif;font-size:2rem;font-weight:700;color:var(--gold2);line-height:1}
+.how-image-card .sub{font-size:.7rem;color:var(--gray);margin-top:4px}
+
+/* ═══ TESTIMONIALS ═══ */
+.testimonials{background:var(--navy)}
+.testi-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;flex-wrap:wrap;gap:20px}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testi-card{
+  background:var(--navy2);border:1px solid rgba(255,255,255,.05);
+  border-radius:2px;padding:36px 32px;
+  transition:all .4s;position:relative;overflow:hidden;
+}
+.testi-card::before{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--red),var(--gold2));
+  transform:scaleX(0);transform-origin:left;transition:transform .4s;
+}
+.testi-card:hover{transform:translateY(-6px);border-color:rgba(184,150,62,.15)}
+.testi-card:hover::before{transform:scaleX(1)}
+.testi-quote{
+  font-family:'Montserrat',sans-serif;
+  font-size:2.5rem;color:var(--gold2);opacity:.3;
+  line-height:.5;margin-bottom:16px;
+}
+.testi-text{font-size:.88rem;color:rgba(255,255,255,.75);line-height:1.75;font-style:italic;margin-bottom:24px;font-weight:300}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--red),var(--navy3));
+  display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;font-weight:700;color:#fff;flex-shrink:0;
+}
+.testi-name{font-size:.85rem;font-weight:600}
+.testi-badge{font-size:.68rem;color:var(--gold2);margin-top:2px}
+.testi-stars{color:var(--gold2);font-size:.75rem;letter-spacing:2px;margin-bottom:16px}
+
+/* ═══ NUMBERS ═══ */
+.numbers{
+  background:var(--navy2);
+  border-top:1px solid rgba(255,255,255,.05);
+  border-bottom:1px solid rgba(255,255,255,.05);
+  padding:48px 5%;
+  position:relative;overflow:hidden;
+}
+.numbers::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,rgba(200,16,46,.05) 0%,transparent 70%);
+}
+.numbers-inner{
+  display:flex;align-items:center;justify-content:center;
+  max-width:1100px;margin:0 auto;
+  position:relative;z-index:1;
+}
+.number-item{
+  flex:1;text-align:center;padding:16px 20px;
+  position:relative;
+}
+.number-divider{
+  width:1px;height:48px;flex-shrink:0;
+  background:linear-gradient(to bottom,transparent,rgba(255,255,255,.1),transparent);
+}
+.number-val{
+  font-family:'Montserrat',sans-serif;
+  font-size:clamp(1.8rem,3.5vw,2.6rem);
+  font-weight:900;color:#fff;
+  line-height:1;margin-bottom:6px;
+  letter-spacing:-1px;
+}
+.nunit{color:var(--gold2)}
+.nprefix{color:var(--gray);font-weight:400;font-size:75%}
+.number-label{
+  font-size:.6rem;color:var(--gray);
+  text-transform:uppercase;letter-spacing:2.5px;font-weight:600;
+}
+
+/* ═══ CTA SECTION ═══ */
+.cta-section{
+  position:relative;overflow:hidden;padding:120px 5%;
+  text-align:center;
+  background:
+    linear-gradient(135deg, rgba(5,11,24,1) 0%, rgba(5,11,24,.9) 100%),
+    url('https://images.pexels.com/photos/4427430/pexels-photo-4427430.jpeg?auto=compress&cs=tinysrgb&w=1800') center/cover;
+}
+.cta-section::before{
+  content:'';position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:800px;height:400px;
+  background:radial-gradient(ellipse,rgba(200,16,46,.12) 0%,transparent 65%);
+}
+.cta-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.cta-section .section-label{justify-content:center}
+.cta-section .section-label::before{display:none}
+.cta-section .section-title{font-size:clamp(2rem,4.5vw,3.5rem)}
+.cta-section .section-sub{max-width:500px;margin:0 auto 48px;text-align:center}
+.cta-badges{display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;margin-top:32px}
+.cta-badge{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--gray)}
+.cta-badge svg{color:var(--gold2);flex-shrink:0}
+
+/* ═══ FOOTER ═══ */
+footer{
+  background:var(--navy);
+  border-top:1px solid rgba(255,255,255,.06);
+  padding:72px 5% 40px;
+}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:80px;margin-bottom:64px}
+.footer-brand img{height:40px;margin-bottom:20px}
+.footer-brand p{font-size:.83rem;color:var(--gray);line-height:1.75;font-weight:300;max-width:280px}
+.footer-social{display:flex;gap:12px;margin-top:24px}
+.social-btn{
+  width:36px;height:36px;border-radius:2px;
+  border:1px solid rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;color:var(--gray);text-decoration:none;
+}
+.social-btn:hover{border-color:var(--gold2);color:var(--gold2)}
+.footer-col h5{font-size:.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold2);margin-bottom:20px}
+.footer-col a{display:block;font-size:.83rem;color:var(--gray);text-decoration:none;margin-bottom:12px;transition:color .2s;font-weight:300}
+.footer-col a:hover{color:#fff}
+.footer-bottom{
+  padding-top:32px;border-top:1px solid rgba(255,255,255,.06);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+}
+.footer-bottom p{font-size:.75rem;color:rgba(255,255,255,.25)}
+
+/* ═══ WA FLOAT ═══ */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:200}
+.wa-float a{
+  display:flex;align-items:center;gap:10px;
+  background:#25d366;color:#fff;
+  font-size:.82rem;font-weight:600;
+  padding:14px 22px;border-radius:2px;
+  text-decoration:none;
+  box-shadow:0 8px 32px rgba(37,211,102,.3);
+  animation:pulse 2.5s ease-in-out infinite;
+  transition:all .2s;
+}
+.wa-float a:hover{filter:brightness(1.1);animation:none}
+.wa-float svg{width:18px;height:18px;flex-shrink:0}
+.wa-dot{
+  position:absolute;top:-4px;right:-4px;
+  width:12px;height:12px;background:var(--red);
+  border-radius:50%;border:2px solid var(--navy);
+  animation:pulse 1.5s ease-in-out infinite;
+}
+
+/* ═══ FIXES DE ALINHAMENTO ═══ */
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto}
+.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto}
+.services-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:1200px;margin:0 auto}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1200px;margin:0 auto}
+
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:80px;margin-bottom:64px;max-width:1200px;margin-left:auto;margin-right:auto}
+.services-header{text-align:center;margin-bottom:72px;max-width:1200px;margin-left:auto;margin-right:auto}
+.testi-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;flex-wrap:wrap;gap:20px;max-width:1200px;margin-left:auto;margin-right:auto}
+.hero-content{position:relative;z-index:2;padding:140px 5% 80px;max-width:860px;flex:1;display:flex;flex-direction:column;justify-content:center}
+.cta-inner{position:relative;z-index:1;max-width:700px;margin:0 auto;text-align:center}
+.cta-badges{display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;margin-top:32px}
+.footer-bottom{padding-top:32px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;max-width:1200px;margin:32px auto 0}
+section{padding:100px 5%}
+.pain{background:var(--navy2);position:relative;overflow:hidden;padding:100px 5%}
+.services{background:var(--navy);position:relative;padding:100px 5%}
+.how{background:var(--navy2);position:relative;overflow:hidden;padding:100px 5%}
+.testimonials{background:var(--navy);padding:100px 5%}
+.cta-section{position:relative;overflow:hidden;padding:100px 5%;text-align:center;background:linear-gradient(135deg,rgba(5,11,24,1) 0%,rgba(5,11,24,.9) 100%),url('https://images.pexels.com/photos/4427430/pexels-photo-4427430.jpeg?auto=compress&cs=tinysrgb&w=1800') center/cover}
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.06);padding:72px 5% 40px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:72px;background:rgba(5,11,24,0);backdrop-filter:blur(0px);border-bottom:1px solid rgba(255,255,255,0);transition:all .4s ease}
+.urgency{background:var(--red);padding:14px 5%;display:flex;align-items:center;justify-content:center;gap:16px}
+
+@media(max-width:1024px){
+  .pain-grid,.how-grid{grid-template-columns:1fr;gap:48px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:40px}
+}
+@media(max-width:768px){
+  .services-grid,.testi-grid{grid-template-columns:1fr}
+  .numbers-inner{flex-wrap:wrap}
+  .number-item{flex:0 0 50%}
+  .number-divider{display:none}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .hero h1{font-weight:800;font-size:2.2rem}
+  .hero-content{padding:88px 5% 48px;justify-content:flex-start}
+  .hero-sub br{display:none}
+  .pain-image,.how-image{display:none}
+  .footer-grid{grid-template-columns:1fr;gap:32px}
+  section,.pain,.services,.how,.testimonials,.cta-section{padding:64px 5%}
+  .btn-primary{width:100%;justify-content:center}
+  .hero-actions{flex-direction:column;align-items:stretch;gap:12px}
+  .btn-secondary{justify-content:center}
+  .section-title{font-size:1.9rem}
+  .testi-header{flex-direction:column}
+  .triagem-paths{grid-template-columns:1fr}
+  .triagem-body{padding:20px}
+  .triagem-header{padding:20px 20px 16px}
+  .mobile-menu{max-width:100%}
+}
+@media(max-width:480px){
+  .hero h1{font-weight:800;font-size:1.9rem}
+  .section-title{font-size:1.7rem}
+  .number-item{flex:0 0 100%}
+  .service-card{padding:28px 20px}
+  .testi-card{padding:24px 20px}
+}
+
+/* ═══ PÁGINA TRIAGEM (overlay) ═══ */
+#pagina-triagem {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  overflow-y: auto;
+  background: #070d1a;
+  font-family: 'Montserrat', sans-serif;
+}
+#pagina-triagem.active { display: block; }
+.triagem-top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(7,13,26,.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.triagem-top-bar img { height: 36px; }
+.triagem-back-btn {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: .78rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all .2s;
+}
+.triagem-back-btn:hover { background: rgba(255,255,255,.12); }
+
+/* ═══ TRIAGEM CSS INTERNO ═══ */
+
 :root {
   --navy: #070d1a;
   --navy2: #0b1526;
@@ -336,11 +1174,635 @@ header img { height: 52px; }
 @media (max-width: 480px) {
   .field-row { grid-template-columns: 1fr; }
 }
+
 </style>
 </head>
 <body>
 
-<div class="bg-grid"></div>
+<!-- OVERLAY MENU -->
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+
+<!-- MENU MOBILE -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-header">
+    <img src="https://res.cloudinary.com/dmdaiwkyl/image/upload/v1773170909/LOGO_02_COLOR_1_voxxy3.png" alt="JustHelp">
+    <button class="menu-close" onclick="closeMenu()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu-links">
+    <a href="#servicos" onclick="closeMenu()">
+      Serviços
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="#como-funciona" onclick="closeMenu()">
+      Como funciona
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="#resultados" onclick="closeMenu()">
+      Resultados
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="#contato" onclick="closeMenu()">
+      Contato
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="mobile-menu-footer">
+    <a href="#" class="mobile-menu-cta" onclick="closeMenu();openTriagem();return false;">
+      Limpar meu nome agora →
+    </a>
+    <div class="mobile-menu-contact">
+      <a href="tel:+5511942883457">(11) 94288-3457</a> · <a href="https://instagram.com/justhelpoficial">@justhelpoficial</a>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL TRIAGEM -->
+<div class="triagem-modal" id="triagemModal">
+  <div class="triagem-overlay" onclick="closeTriagem()"></div>
+  <div class="triagem-box">
+    <div class="triagem-header">
+      <h3>Análise Gratuita</h3>
+      <button class="triagem-close" onclick="closeTriagem()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="triagem-body">
+
+      <!-- PROGRESSO -->
+      <div class="triagem-progress">
+        <div class="triagem-prog-dot active" id="p1"></div>
+        <div class="triagem-prog-dot" id="p2"></div>
+        <div class="triagem-prog-dot" id="p3"></div>
+      </div>
+
+      <!-- STEP 1: SITUAÇÃO -->
+      <div class="triagem-step active" id="ts1">
+        <div class="triagem-q">Passo 1 de 3</div>
+        <h3 class="triagem-title">Qual é a sua situação?</h3>
+        <p class="triagem-sub">Selecione a opção que melhor descreve seu caso.</p>
+        <div class="triagem-options">
+          <button class="triagem-opt" onclick="selectSit('indevida',this)">
+            <div class="triagem-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+            <div class="triagem-opt-text"><h4>Fui negativado indevidamente</h4><p>Dívida não é minha, já foi paga ou veio sem aviso</p></div>
+          </button>
+          <button class="triagem-opt" onclick="selectSit('fraude',this)">
+            <div class="triagem-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="triagem-opt-text"><h4>Fraude no meu CPF</h4><p>Dívida feita por terceiros sem minha autorização</p></div>
+          </button>
+          <button class="triagem-opt" onclick="selectSit('limpeza',this)">
+            <div class="triagem-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+            <div class="triagem-opt-text"><h4>Quero limpar meu nome</h4><p>Dívida existe, quero remover o registro do SPC/Serasa</p></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: VALOR -->
+      <div class="triagem-step" id="ts2">
+        <div class="triagem-q">Passo 2 de 3</div>
+        <h3 class="triagem-title">Qual o valor da dívida?</h3>
+        <p class="triagem-sub">Isso define qual caminho é mais adequado para o seu caso.</p>
+        <div class="triagem-options">
+          <button class="triagem-opt" onclick="selectValor('20-50k',this)">
+            <div class="triagem-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <div class="triagem-opt-text"><h4>Entre R$ 20.000 e R$ 50.000</h4><p>Solução direta a partir de R$ 500</p></div>
+          </button>
+          <button class="triagem-opt" onclick="selectValor('50-100k',this)">
+            <div class="triagem-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <div class="triagem-opt-text"><h4>Entre R$ 50.000 e R$ 100.000</h4><p>Análise personalizada do caso</p></div>
+          </button>
+          <button class="triagem-opt" onclick="selectValor('100k+',this)">
+            <div class="triagem-opt-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <div class="triagem-opt-text"><h4>Acima de R$ 100.000</h4><p>Caso prioritário — atendimento especializado</p></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: ESCOLHA DO CAMINHO -->
+      <div class="triagem-step" id="ts3">
+        <div class="triagem-q">Passo 3 de 3</div>
+        <h3 class="triagem-title">Como quer continuar?</h3>
+        <p class="triagem-sub">Escolha o caminho certo para o seu caso. Os dois começam agora.</p>
+        <div class="triagem-paths">
+          <a href="#" onclick="abrirTriagem();return false;" class="triagem-path red-path">
+            <div class="path-icon">⚖️</div>
+            <h4>Consulta com advogado</h4>
+            <p>Análise detalhada, estratégia jurídica e resolução em até 30 dias</p>
+            <div class="path-price">R$ 120,00</div>
+          </a>
+          <a href="#" class="triagem-path green-path" onclick="goAssistente();return false;">
+            <div class="path-icon">💬</div>
+            <h4>Assistente jurídico</h4>
+            <p>Tire dúvidas, entenda seus direitos e decida com mais segurança</p>
+            <div class="path-price">Gratuito</div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="/" class="nav-logo">
+    <img src="https://res.cloudinary.com/dmdaiwkyl/image/upload/v1773170909/LOGO_02_COLOR_1_voxxy3.png" alt="JustHelp">
+  </a>
+  <div class="nav-links">
+    <a href="#servicos">Serviços</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#resultados">Resultados</a>
+    <a href="#contato">Contato</a>
+  </div>
+  <a href="#" class="nav-cta" onclick="abrirTriagem();return false;">Análise gratuita</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+
+  <!-- ONDAS ANIMADAS -->
+  <div class="waves-container">
+    <svg class="wave wave1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path fill="rgba(200,16,46,0.06)" d="M0,160L48,170.7C96,181,192,203,288,192C384,181,480,139,576,138.7C672,139,768,181,864,192C960,203,1056,181,1152,160C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"/>
+    </svg>
+    <svg class="wave wave2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path fill="rgba(184,150,62,0.04)" d="M0,224L48,213.3C96,203,192,181,288,186.7C384,192,480,224,576,218.7C672,213,768,171,864,165.3C960,160,1056,192,1152,208C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"/>
+    </svg>
+    <svg class="wave wave3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path fill="rgba(200,16,46,0.03)" d="M0,288L48,272C96,256,192,224,288,229.3C384,235,480,277,576,272C672,267,768,213,864,208C960,203,1056,245,1152,261.3C1248,277,1344,267,1392,261.3L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-tag">
+      <div class="hero-tag-dot"></div>
+      <span>Nome limpo em até 30 dias</span>
+    </div>
+    <h1>
+      Seu nome sujo<br>
+      está travando<br>
+      <span class="accent">sua vida.</span>
+      <span class="red"> Hoje.</span>
+    </h1>
+    <p class="hero-sub">
+      Financiamento negado. Emprego bloqueado. Negócio sem crédito.<br>
+      A JustHelp resolve de forma rápida e direta em até 30 dias,<br>a partir de R$ 500, sem pagar tudo de uma vez.
+    </p>
+    <div class="hero-actions">
+      <a href="#" onclick="abrirTriagem();return false;" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Limpar meu nome agora
+      </a>
+      <a href="#como-funciona" class="btn-secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        Ver como funciona
+      </a>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- URGENCY -->
+<div class="urgency">
+  <svg class="urgency-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+  <p>Cada dia com nome sujo é mais um dia perdendo dinheiro, crédito e oportunidade. <strong>Não espere mais.</strong></p>
+</div>
+
+<!-- DOR -->
+<section class="pain" id="servicos">
+  <div class="pain-grid">
+    <div class="pain-image reveal-left">
+      <img src="https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Pessoa preocupada com finanças">
+      <div class="pain-image-overlay">
+        <div class="num">70M+</div>
+        <div class="txt">brasileiros com nome sujo</div>
+      </div>
+    </div>
+    <div class="reveal-right">
+      <div class="section-label">O problema</div>
+      <h2 class="section-title">O que o nome sujo<br><em>está te custando</em></h2>
+      <p class="section-sub" style="margin-bottom:40px">Você não vê no extrato, mas paga todo mês. O nome sujo fecha portas que você nem sabe que existiam.</p>
+      <div class="pain-list">
+        <div class="pain-item">
+          <div class="pain-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg>
+          </div>
+          <div class="pain-text">
+            <h4>Financiamento negado</h4>
+            <p>Carro, imóvel, moto. Qualquer financiamento é bloqueado automaticamente quando o banco consulta o CPF.</p>
+          </div>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <div class="pain-text">
+            <h4>Emprego bloqueado</h4>
+            <p>Empresas consultam o CPF antes de contratar. Nome sujo pode reprovar um candidato qualificado na triagem.</p>
+          </div>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div class="pain-text">
+            <h4>Crédito negado para o negócio</h4>
+            <p>Queria abrir ou expandir seu negócio mas o banco nega o crédito por causa do registro no Serasa.</p>
+          </div>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <div class="pain-text">
+            <h4>Juros mais altos em tudo</h4>
+            <p>Score baixo significa juros maiores em parcelamentos, cartão e qualquer crédito que conseguir.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="services">
+  <div class="services-header reveal">
+    <div class="section-label">Nossas soluções</div>
+    <h2 class="section-title">Dois caminhos.<br><em>Um objetivo.</em></h2>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card featured">
+      <span class="service-badge badge-red">Mais procurado</span>
+      <h3>Negativação Indevida<br>+ Indenização</h3>
+      <p>A dívida não é sua, já foi paga ou chegou sem aviso prévio? Você tem direito a indenização por danos morais de até R$ 15.000, além da remoção do registro.</p>
+      <div class="service-features">
+        <div class="sf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Indenização de até R$ 15.000</div>
+        <div class="sf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Nome limpo no SPC e Serasa</div>
+        <div class="sf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Processo em até 30 dias</div>
+        <div class="sf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Análise gratuita</div>
+      </div>
+      <a href="#" onclick="abrirTriagem();return false;" class="service-cta">
+        Verificar meu caso
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="service-card">
+      <span class="service-badge badge-gold">A partir de R$ 500</span>
+      <h3>Limpeza de Nome<br>SPC e Serasa</h3>
+      <p>Deve acima de R$ 20.000 e quer remover o registro sem pagar tudo de uma vez? Solução direta com resultado em até 30 dias.</p>
+      <div class="service-features">
+        <div class="sf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Entrada a partir de R$ 500</div>
+        <div class="sf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Nome limpo em até 30 dias</div>
+        <div class="sf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Sem pagar tudo de uma vez</div>
+        <div class="sf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Sem sair de casa</div>
+      </div>
+      <a href="#" onclick="abrirTriagem();return false;" class="service-cta" style="color:var(--gold2)">
+        Quero limpar meu nome
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="how" id="como-funciona">
+  <div class="how-grid">
+    <div class="reveal-left">
+      <div class="section-label">Processo</div>
+      <h2 class="section-title">Nome limpo em<br><em>4 passos simples</em></h2>
+      <p class="section-sub" style="margin-bottom:48px">Tudo pelo celular. Sem ir a nenhum cartório, fórum ou agência bancária.</p>
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="how-step-num">01</div>
+          <div class="how-step-content">
+            <h4>Análise gratuita do caso</h4>
+            <p>Você conta sua situação e nossa equipe analisa se você tem direito à limpeza ou indenização.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">02</div>
+          <div class="how-step-content">
+            <h4>Envio dos documentos</h4>
+            <p>Apenas RG, CPF e print do Serasa. Tudo enviado pelo celular em poucos minutos.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">03</div>
+          <div class="how-step-content">
+            <h4>A JustHelp entra com o processo</h4>
+            <p>Nossa equipe entra com o processo imediatamente. Acompanhamos cada etapa até a resolução.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">04</div>
+          <div class="how-step-content">
+            <h4>Nome limpo em até 30 dias</h4>
+            <p>Registro removido do SPC e Serasa. Se houver indenização, o valor cai na sua conta.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="how-image reveal-right">
+      <img src="https://images.pexels.com/photos/5669619/pexels-photo-5669619.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Profissional JustHelp">
+      <div class="how-image-card">
+        <div class="label">Prazo máximo</div>
+        <div class="value">30</div>
+        <div class="sub">dias para resultado</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NÚMEROS -->
+<div class="numbers" id="resultados">
+  <div class="numbers-inner">
+    <div class="number-item reveal">
+      <div class="number-val"><span id="n1">0</span><span class="nunit">+</span></div>
+      <div class="number-label">Casos resolvidos</div>
+    </div>
+    <div class="number-divider"></div>
+    <div class="number-item reveal">
+      <div class="number-val"><span class="nprefix">R$ </span><span id="n2">0</span><span class="nunit">k</span></div>
+      <div class="number-label">Em indenizações</div>
+    </div>
+    <div class="number-divider"></div>
+    <div class="number-item reveal">
+      <div class="number-val"><span id="n3">0</span><span class="nunit"> dias</span></div>
+      <div class="number-label">Prazo máximo</div>
+    </div>
+    <div class="number-divider"></div>
+    <div class="number-item reveal">
+      <div class="number-val"><span id="n4">0</span><span class="nunit">/5</span></div>
+      <div class="number-label">Avaliação média</div>
+    </div>
+  </div>
+</div>
+
+<!-- DEPOIMENTOS -->
+<section class="testimonials">
+  <div class="testi-header">
+    <div>
+      <div class="section-label reveal">Depoimentos</div>
+      <h2 class="section-title reveal">O que nossos<br><em>clientes dizem</em></h2>
+    </div>
+    <p class="section-sub reveal" style="max-width:300px;text-align:right">Resultados reais de quem não esperou mais.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">Estava com meu nome no Serasa por uma conta já paga há dois anos. A JustHelp resolveu em 26 dias. Recebi R$ 8.000 de indenização.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">MF</div>
+        <div>
+          <div class="testi-name">Marcia F.</div>
+          <div class="testi-badge">✓ Indenização recebida — São Paulo, SP</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">Tentei financiar um carro por 8 meses. Sempre negado. Em 28 dias com a JustHelp o nome estava limpo. No mês seguinte o financiamento saiu.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">RA</div>
+        <div>
+          <div class="testi-name">Roberto A.</div>
+          <div class="testi-badge">✓ Nome limpo em 28 dias — Santo André, SP</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">Precisava abrir meu negócio mas o banco negava tudo. A JustHelp limpou meu nome em 30 dias. Hoje minha empresa está aberta e funcionando.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">CS</div>
+        <div>
+          <div class="testi-name">Claudia S.</div>
+          <div class="testi-badge">✓ Negócio aberto — Campinas, SP</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section" id="contato">
+
+  <!-- ONDAS CTA -->
+  <div style="position:absolute;top:0;left:0;right:0;height:120px;overflow:hidden;pointer-events:none;z-index:0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" style="width:110%;height:100%;margin-left:-5%;animation:waveMove2 10s ease-in-out infinite">
+      <path fill="rgba(200,16,46,0.05)" d="M0,64L60,74.7C120,85,240,107,360,101.3C480,96,600,64,720,53.3C840,43,960,53,1080,64C1200,75,1320,85,1380,90.7L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"/>
+    </svg>
+  </div>
+  <div class="cta-inner">
+    <div class="section-label reveal">Comece agora</div>
+    <h2 class="section-title reveal">Cada dia que passa<br>é <em>dinheiro perdido.</em></h2>
+    <p class="section-sub reveal">A análise é gratuita. Você descobre em minutos se tem direito à limpeza de nome ou indenização, sem compromisso.</p>
+    <a href="#" onclick="abrirTriagem();return false;" class="btn-primary reveal" style="display:inline-flex;font-size:1rem;padding:20px 44px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Limpar meu nome agora
+    </a>
+    <div class="cta-badges reveal">
+      <div class="cta-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg> Análise gratuita</div>
+      <div class="cta-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg> Resultado em até 30 dias</div>
+      <div class="cta-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg> Sem sair de casa</div>
+      <div class="cta-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg> A partir de R$ 500</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="https://res.cloudinary.com/dmdaiwkyl/image/upload/v1773170909/LOGO_02_COLOR_1_voxxy3.png" alt="JustHelp">
+      <p>Escritório jurídico especializado em limpeza de nome no SPC e Serasa e ações por negativação indevida. Nome limpo em até 30 dias.</p>
+      <div class="footer-social">
+        <a href="https://instagram.com/justhelpoficial" class="social-btn" target="_blank" title="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@justhelpoficial" class="social-btn" target="_blank" title="YouTube">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@justhelpoficial" class="social-btn" target="_blank" title="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.78a4.85 4.85 0 0 1-1.01-.09z"/></svg>
+        </a>
+        <a href="https://wa.me/5511942883457" class="social-btn" target="_blank" title="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Serviços</h5>
+      <a href="#" onclick="abrirTriagem();return false;">Negativação Indevida</a>
+      <a href="#" onclick="abrirTriagem();return false;">Limpeza de Nome</a>
+      <a href="#" onclick="abrirTriagem();return false;">Análise Gratuita</a>
+    </div>
+    <div class="footer-col">
+      <h5>Contato</h5>
+      <a href="tel:+5511942883457">(11) 94288-3457</a>
+      <a href="https://instagram.com/justhelpoficial">@justhelpoficial</a>
+      <a href="#">Av. Paulista, 1636 — Cond. Paulista Corporate<br>Bela Vista, São Paulo/SP — CEP 01.310-200</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 JustHelp Assessoria Ltda — CNPJ 65.620.168/0001-45 — Todos os direitos reservados.</p>
+    <p>justhelpbr.com.br</p>
+  </div>
+</footer>
+
+<!-- WA FLOAT -->
+<div class="wa-float">
+  <a href="#" onclick="abrirTriagem();return false;" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Falar agora
+  </a>
+  <div class="wa-dot"></div>
+</div>
+
+<script>
+// ═══ NAV SCROLL ═══
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+});
+
+// ═══ MENU MOBILE ═══
+function toggleMenu(){
+  const menu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('menuOverlay');
+  const ham = document.getElementById('hamburger');
+  const isOpen = menu.classList.contains('open');
+  if(isOpen){ closeMenu(); }
+  else {
+    menu.classList.add('open');
+    overlay.classList.add('open');
+    ham.classList.add('active');
+    document.body.style.overflow='hidden';
+  }
+}
+function closeMenu(){
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('menuOverlay').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('active');
+  document.body.style.overflow='';
+}
+
+// ═══ TRIAGEM MODAL ═══
+let triagemData = { situacao: '', valor: '' };
+
+function openTriagem(){
+  document.getElementById('triagemModal').classList.add('open');
+  document.body.style.overflow='hidden';
+  goStep(1);
+}
+function closeTriagem(){
+  document.getElementById('triagemModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function goStep(n){
+  document.querySelectorAll('.triagem-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('ts'+n).classList.add('active');
+  // Progress
+  for(let i=1;i<=3;i++){
+    const d = document.getElementById('p'+i);
+    if(i<n) { d.style.background='var(--gold2)'; }
+    else if(i===n) { d.style.background='var(--red)'; }
+    else { d.style.background='rgba(255,255,255,.08)'; }
+  }
+}
+
+function selectSit(val, el){
+  triagemData.situacao = val;
+  document.querySelectorAll('#ts1 .triagem-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  setTimeout(()=>goStep(2), 400);
+}
+
+function selectValor(val, el){
+  triagemData.valor = val;
+  document.querySelectorAll('#ts2 .triagem-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  setTimeout(()=>goStep(3), 400);
+}
+
+function goAssistente(){
+  const sit = triagemData.situacao === 'indevida' ? 'Negativação indevida' :
+               triagemData.situacao === 'fraude' ? 'Fraude no CPF' : 'Limpeza de nome';
+  const msg = encodeURIComponent(`Olá! Gostaria de falar com o assistente jurídico gratuito da JustHelp.\n\nMinha situação: ${sit}`);
+  window.open('https://wa.me/5511942883457?text='+msg,'_blank');
+  closeTriagem();
+}
+
+// ═══ REVEAL ON SCROLL ═══
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+    }
+  });
+},{threshold:0.12});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>observer.observe(el));
+
+// ═══ COUNTER ANIMATION ═══
+function animNum(id,end,duration,decimals=0){
+  const el=document.getElementById(id);
+  if(!el)return;
+  let start=0;
+  const step=end/duration*16;
+  const t=setInterval(()=>{
+    start=Math.min(start+step,end);
+    el.textContent=decimals?start.toFixed(1):Math.floor(start);
+    if(start>=end)clearInterval(t);
+  },16);
+}
+const numObserver=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      animNum('n1',847,1800);
+      animNum('n2',512,1800);
+      animNum('n3',30,1200);
+      animNum('n4',4.9,1500,1);
+      numObserver.disconnect();
+    }
+  });
+},{threshold:.3});
+const numSection=document.querySelector('.numbers');
+if(numSection)numObserver.observe(numSection);
+
+// ═══ PARALLAX HERO ═══
+window.addEventListener('scroll',()=>{
+  const hero = document.querySelector('.hero-bg');
+  if(hero) hero.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+});
+
+// ═══ ESC FECHA MODAIS ═══
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){ closeMenu(); closeTriagem(); }
+});
+</script>
+
+<!-- ═══ PÁGINA TRIAGEM ═══ -->
+<div id="pagina-triagem">
+  <div class="triagem-top-bar">
+    <img src="https://res.cloudinary.com/dmdaiwkyl/image/upload/v1773170909/LOGO_02_COLOR_1_voxxy3.png" alt="JustHelp">
+    <button class="triagem-back-btn" onclick="fecharTriagem()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Voltar ao site
+    </button>
+  </div>
+  <div class="bg-grid"></div>
 <div class="bg-glow"></div>
 
 <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
@@ -807,9 +2269,32 @@ header img { height: 52px; }
 </div>
 
 <!-- QR CODE LIBRARY -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
+
+// ═══ CONTROLE DA PÁGINA TRIAGEM ═══
+function abrirTriagem() {
+  document.getElementById('pagina-triagem').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  // resetar para step 1
+  setTimeout(() => {
+    const steps = document.querySelectorAll('#pagina-triagem .step');
+    steps.forEach(s => s.classList.remove('active'));
+    const s1 = document.getElementById('step1');
+    if(s1) s1.classList.add('active');
+    updateProgress();
+    calInit();
+  }, 50);
+}
+function fecharTriagem() {
+  document.getElementById('pagina-triagem').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+
+
 const data = {
   situacao: '', situacaoLabel: '',
   nome: '', cpf: '', nascimento: '', whatsapp: '', email: '', cidade: '',
@@ -1348,6 +2833,7 @@ Comprovante em anexo.`;
 
 updateProgress();
 calInit();
+
 </script>
 </body>
 </html>
