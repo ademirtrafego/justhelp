@@ -23,6 +23,7 @@
      ROBOTS — indexação máxima
 ════════════════════════════════════════ -->
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="google-site-verification" content="VHUKskVG1ducgcwOBLdenqBWHC_RCx-qhtaTqVi9ZiI">
 <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
 <!-- ════════════════════════════════════════
@@ -290,6 +291,21 @@
 <meta name="geo.placename" content="São Paulo">
 <meta name="geo.position" content="-23.5614;-46.6559">
 <meta name="ICBM" content="-23.5614, -46.6559">
+
+<!-- ════════════════════════════════════════
+     PWA — Progressive Web App
+════════════════════════════════════════ -->
+<link rel="manifest" href="/manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="JustHelp">
+<meta name="application-name" content="JustHelp">
+<meta name="msapplication-TileColor" content="#050b18">
+<meta name="msapplication-tap-highlight" content="no">
+<link rel="apple-touch-icon" href="https://res.cloudinary.com/dmdaiwkyl/image/upload/v1773170909/LOGO_02_COLOR_1_voxxy3.png">
+<link rel="apple-touch-startup-image" href="https://res.cloudinary.com/dmdaiwkyl/image/upload/v1773170909/LOGO_02_COLOR_1_voxxy3.png">
+<link rel="icon" type="image/png" href="https://res.cloudinary.com/dmdaiwkyl/image/upload/v1773170909/LOGO_02_COLOR_1_voxxy3.png">
 
 <style>
 :root {
@@ -1582,6 +1598,43 @@ header img { height: 52px; }
 </head>
 <body>
 
+<!-- ═══ BANNER PWA INSTALAÇÃO ═══ -->
+<div id="pwa-banner" style="
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;z-index:1000;
+  background:var(--navy2);
+  border-top:1px solid rgba(184,150,62,.25);
+  padding:16px 20px;
+  flex-direction:column;gap:12px;
+  box-shadow:0 -8px 32px rgba(0,0,0,.5);
+  animation:fadeUp .4s ease;
+">
+  <div style="display:flex;align-items:center;gap:12px">
+    <img src="https://res.cloudinary.com/dmdaiwkyl/image/upload/v1773170909/LOGO_02_COLOR_1_voxxy3.png" style="width:44px;height:44px;border-radius:10px;border:1px solid rgba(184,150,62,.2)">
+    <div style="flex:1">
+      <div style="font-size:.85rem;font-weight:700;color:#fff;margin-bottom:2px">Instalar app JustHelp</div>
+      <div style="font-size:.72rem;color:var(--gray)">Acesso rápido na tela inicial do celular</div>
+    </div>
+    <button onclick="document.getElementById('pwa-banner').style.display='none'" style="background:rgba(255,255,255,.06);border:none;color:var(--gray);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center">×</button>
+  </div>
+  <div style="display:flex;gap:10px">
+    <button id="pwa-install-btn" style="
+      flex:1;background:var(--red);color:#fff;border:none;
+      font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:700;
+      padding:12px;border-radius:8px;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;gap:8px;
+    ">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Adicionar à tela inicial
+    </button>
+    <button onclick="document.getElementById('pwa-banner').style.display='none'" style="
+      background:rgba(255,255,255,.05);color:var(--gray);border:1px solid rgba(255,255,255,.1);
+      font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:600;
+      padding:12px 16px;border-radius:8px;cursor:pointer;
+    ">Agora não</button>
+  </div>
+</div>
+
 <!-- OVERLAY MENU -->
 <div class="bg-orb bg-orb-1"></div>
 <div class="bg-orb bg-orb-2"></div>
@@ -2303,6 +2356,87 @@ window.addEventListener('scroll',()=>{
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){ closeMenu(); closeTriagem(); }
 });
+
+// ═══ ABRIR TRIAGEM SE ?acao=triagem (PWA shortcut) ═══
+if(new URLSearchParams(location.search).get('acao')==='triagem'){
+  window.addEventListener('load',()=>setTimeout(abrirTriagem,500));
+}
+</script>
+
+<!-- ═══ PWA: SERVICE WORKER + BANNER ═══ -->
+<script>
+// Registra Service Worker
+if('serviceWorker' in navigator){
+  window.addEventListener('load', async ()=>{
+    try{
+      const reg = await navigator.serviceWorker.register('/sw.js');
+      console.log('JustHelp SW registrado:', reg.scope);
+    } catch(e){
+      console.log('SW não disponível neste ambiente');
+    }
+  });
+}
+
+// Captura evento de instalação
+let deferredPrompt = null;
+const pwaBanner = document.getElementById('pwa-banner');
+const pwaInstallBtn = document.getElementById('pwa-install-btn');
+
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+
+  // Mostra banner após 8 segundos ou quando rolar 40%
+  setTimeout(() => showPWABanner(), 8000);
+  window.addEventListener('scroll', function onScroll(){
+    if(window.scrollY > document.body.scrollHeight * 0.35){
+      showPWABanner();
+      window.removeEventListener('scroll', onScroll);
+    }
+  });
+});
+
+function showPWABanner(){
+  // Não mostra se já instalado ou fechado antes
+  if(localStorage.getItem('pwa-dismissed')) return;
+  if(window.matchMedia('(display-mode: standalone)').matches) return;
+  pwaBanner.style.display = 'flex';
+}
+
+pwaInstallBtn && pwaInstallBtn.addEventListener('click', async ()=>{
+  if(!deferredPrompt) return;
+  deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+  if(outcome === 'accepted'){
+    pwaBanner.style.display = 'none';
+    localStorage.setItem('pwa-installed', 'true');
+  } else {
+    localStorage.setItem('pwa-dismissed', 'true');
+    pwaBanner.style.display = 'none';
+  }
+  deferredPrompt = null;
+});
+
+// Detecta quando já foi instalado
+window.addEventListener('appinstalled', ()=>{
+  pwaBanner.style.display = 'none';
+  localStorage.setItem('pwa-installed', 'true');
+  console.log('JustHelp PWA instalado com sucesso');
+});
+
+// iOS — instrução manual (Safari não dispara beforeinstallprompt)
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+if(isIOS && !isStandalone && !localStorage.getItem('pwa-dismissed')){
+  setTimeout(()=>{
+    pwaBanner.style.display = 'flex';
+    pwaInstallBtn.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+      Toque em <strong style="margin:0 4px">Compartilhar</strong> → "Adicionar à Tela de Início"
+    `;
+    pwaInstallBtn.style.fontSize = '.72rem';
+  }, 10000);
+}
 </script>
 
 <!-- ═══ PÁGINA TRIAGEM ═══ -->
@@ -2410,7 +2544,7 @@ document.addEventListener('keydown',e=>{
     </div>
 
     <!-- CAMINHO 1: ADVOGADO -->
-    <div style="background:linear-gradient(145deg,rgba(224,48,48,.1),var(--navy3));border:1.5px solid rgba(224,48,48,.35);border-radius:18px;padding:22px;margin-bottom:14px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden" onclick="goToStep(2)" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+    <div style="background:linear-gradient(145deg,rgba(224,48,48,.1),var(--navy3));border:1.5px solid rgba(224,48,48,.35);border-radius:18px;padding:22px;margin-bottom:14px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden" onclick="goToStep('1c')" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
 
       <div style="position:absolute;top:0;right:0;background:var(--red);color:#fff;font-size:.55rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:0 18px 0 12px">Recomendado</div>
 
@@ -2494,6 +2628,98 @@ document.addEventListener('keydown',e=>{
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- STEP 1C: CONSULTA SERASA GRATUITA -->
+  <div class="step" id="step1c">
+    <button class="btn-back" onclick="goToStep('1b')">← Voltar</button>
+    <div class="step-header">
+      <div class="step-counter">Passo 1 de 5</div>
+      <div class="step-tag">Consulta gratuita</div>
+      <h2 class="step-title">Veja agora se seu<br><em>nome está sujo</em></h2>
+      <p class="step-sub">Consulte seu CPF gratuitamente no Serasa. É rápido, gratuito e você volta aqui para continuar.</p>
+    </div>
+
+    <!-- CARD SERASA -->
+    <div style="background:linear-gradient(145deg,rgba(255,255,255,.04),var(--navy3));border:1.5px solid rgba(255,255,255,.1);border-radius:18px;padding:24px;margin-bottom:16px">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+        <div style="width:48px;height:48px;border-radius:12px;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <div>
+          <div style="font-size:.95rem;font-weight:800;margin-bottom:2px">Serasa Consumidor</div>
+          <div style="font-size:.7rem;color:var(--green);font-weight:700">100% Gratuito · Oficial · Instantâneo</div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+        <div style="display:flex;align-items:center;gap:10px;font-size:.8rem;color:#c8d8e8">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Veja todas as dívidas registradas no seu CPF
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:.8rem;color:#c8d8e8">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Descubra quais empresas negativaram seu nome
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:.8rem;color:#c8d8e8">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Veja valores, datas e seu score de crédito
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:.8rem;color:#c8d8e8">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Sem cadastro obrigatório — só o CPF e data de nascimento
+        </div>
+      </div>
+
+      <a href="https://www.serasa.com.br/consulta-cpf/" target="_blank" onclick="serasaAberto()" style="display:flex;align-items:center;justify-content:center;gap:10px;background:#25d366;color:#fff;font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;padding:16px;border-radius:50px;text-decoration:none;transition:filter .2s;margin-bottom:12px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Consultar meu CPF no Serasa
+      </a>
+      <p style="font-size:.65rem;color:var(--text2);text-align:center;line-height:1.5;opacity:.7">Você será redirecionado para o site oficial do Serasa.<br>Após consultar, volte aqui e clique em "Já consultei".</p>
+    </div>
+
+    <!-- APÓS CONSULTAR -->
+    <div id="serasaRetorno" style="display:none;animation:fadeUp .4s ease">
+      <div style="font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text2);margin-bottom:12px">O que você encontrou?</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+        <button class="option-card" onclick="serasaResultado('negativado',this)" style="text-align:left">
+          <div class="opt-icon">😟</div>
+          <div class="opt-check"></div>
+          <div class="opt-content">
+            <h4>Encontrei negativações no meu CPF</h4>
+            <p>Tem dívidas registradas — algumas podem ser indevidas</p>
+          </div>
+        </button>
+        <button class="option-card" onclick="serasaResultado('limpo',this)" style="text-align:left">
+          <div class="opt-icon">😮</div>
+          <div class="opt-check"></div>
+          <div class="opt-content">
+            <h4>Meu CPF apareceu limpo</h4>
+            <p>Mas ainda tenho problemas com crédito ou financiamento</p>
+          </div>
+        </button>
+        <button class="option-card" onclick="serasaResultado('naosei',this)" style="text-align:left">
+          <div class="opt-icon">🤔</div>
+          <div class="opt-check"></div>
+          <div class="opt-content">
+            <h4>Não consegui consultar agora</h4>
+            <p>Vou prosseguir assim mesmo</p>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- ALERTA RESULTADO -->
+    <div id="serasaAlerta" style="display:none;margin-bottom:16px"></div>
+
+    <!-- BOTÃO JÁ CONSULTEI -->
+    <button id="btnJaConsultei" class="btn-secondary" onclick="mostrarRetorno()" style="display:block;margin-bottom:10px">
+      ✓ Já consultei — o que encontrei
+    </button>
+
+    <button class="btn-primary" onclick="goToStep(2)" id="btnStep1c" disabled>
+      Continuar para análise →
+    </button>
   </div>
 
   <!-- STEP 2: DADOS PESSOAIS -->
@@ -2838,6 +3064,67 @@ function goToStep(n) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
   if (n === 5) fillSummary();
   document.dispatchEvent(new CustomEvent('stepChanged', { detail: n }));
+}
+
+// ═══ SERASA ═══
+let serasaJaAberto = false;
+
+function serasaAberto() {
+  serasaJaAberto = true;
+  setTimeout(() => {
+    document.getElementById('btnJaConsultei').style.background = 'rgba(37,211,102,.1)';
+    document.getElementById('btnJaConsultei').style.borderColor = 'rgba(37,211,102,.3)';
+    document.getElementById('btnJaConsultei').style.color = '#7effa8';
+  }, 2000);
+}
+
+function mostrarRetorno() {
+  document.getElementById('serasaRetorno').style.display = 'block';
+  document.getElementById('btnJaConsultei').style.display = 'none';
+  setTimeout(() => document.getElementById('serasaRetorno').scrollIntoView({behavior:'smooth',block:'nearest'}), 100);
+}
+
+function serasaResultado(tipo, el) {
+  document.querySelectorAll('#step1c .option-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+
+  const alerta = document.getElementById('serasaAlerta');
+  alerta.style.display = 'block';
+
+  if (tipo === 'negativado') {
+    data.serasaResultado = 'negativado';
+    alerta.innerHTML = `
+      <div style="background:rgba(224,48,48,.08);border:1px solid rgba(224,48,48,.25);border-radius:12px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff6060" stroke-width="2" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <div>
+          <div style="font-size:.85rem;font-weight:700;color:#ffaaaa;margin-bottom:4px">Negativações encontradas</div>
+          <div style="font-size:.78rem;color:var(--text2);line-height:1.6">Ótimo que você verificou. Agora o advogado vai analisar se as dívidas são indevidas e se você tem direito a indenização. Cada dia que passa é prejuízo.</div>
+        </div>
+      </div>`;
+  } else if (tipo === 'limpo') {
+    data.serasaResultado = 'limpo';
+    alerta.innerHTML = `
+      <div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <div>
+          <div style="font-size:.85rem;font-weight:700;color:#e8d090;margin-bottom:4px">CPF apareceu limpo no Serasa</div>
+          <div style="font-size:.78rem;color:var(--text2);line-height:1.6">Pode existir restrição no SPC, na Boa Vista ou outra empresa. O advogado vai investigar todos os bureaus e identificar o que está bloqueando seu crédito.</div>
+        </div>
+      </div>`;
+  } else {
+    data.serasaResultado = 'naosei';
+    alerta.innerHTML = `
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text2)" stroke-width="2" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="10"/><polyline points="20 6 9 17 4 12"/></svg>
+        <div>
+          <div style="font-size:.85rem;font-weight:700;color:#fff;margin-bottom:4px">Tudo certo</div>
+          <div style="font-size:.78rem;color:var(--text2);line-height:1.6">O advogado vai analisar sua situação com base nas informações que você fornecer a seguir.</div>
+        </div>
+      </div>`;
+  }
+
+  document.getElementById('btnStep1c').disabled = false;
+  setTimeout(() => alerta.scrollIntoView({behavior:'smooth',block:'nearest'}), 100);
 }
 
 function goToAssistente() {
