@@ -2540,7 +2540,7 @@ if(isIOS && !isStandalone && !localStorage.getItem('pwa-dismissed')){
     </div>
 
     <!-- CAMINHO 1: ADVOGADO -->
-    <div style="background:linear-gradient(145deg,rgba(224,48,48,.1),var(--navy3));border:1.5px solid rgba(224,48,48,.35);border-radius:18px;padding:22px;margin-bottom:14px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden" onclick="goToStep('1c')" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+    <div style="background:linear-gradient(145deg,rgba(224,48,48,.1),var(--navy3));border:1.5px solid rgba(224,48,48,.35);border-radius:18px;padding:22px;margin-bottom:14px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden" onclick="goToStep(2)" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
 
       <div style="position:absolute;top:0;right:0;background:var(--red);color:#fff;font-size:.55rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:0 18px 0 12px">Recomendado</div>
 
@@ -2972,64 +2972,6 @@ function goToStep(n) {
 
 // ═══ SERASA ═══
 let serasaJaAberto = false;
-
-function serasaAberto() {
-  serasaJaAberto = true;
-  setTimeout(() => {
-    document.getElementById('btnJaConsultei').style.background = 'rgba(37,211,102,.1)';
-    document.getElementById('btnJaConsultei').style.borderColor = 'rgba(37,211,102,.3)';
-    document.getElementById('btnJaConsultei').style.color = '#7effa8';
-  }, 2000);
-}
-
-function mostrarRetorno() {
-  document.getElementById('serasaRetorno').style.display = 'block';
-  document.getElementById('btnJaConsultei').style.display = 'none';
-  setTimeout(() => document.getElementById('serasaRetorno').scrollIntoView({behavior:'smooth',block:'nearest'}), 100);
-}
-
-function serasaResultado(tipo, el) {
-  document.querySelectorAll('#step1c .option-card').forEach(c => c.classList.remove('selected'));
-  el.classList.add('selected');
-
-  const alerta = document.getElementById('serasaAlerta');
-  alerta.style.display = 'block';
-
-  if (tipo === 'negativado') {
-    data.serasaResultado = 'negativado';
-    alerta.innerHTML = `
-      <div style="background:rgba(224,48,48,.08);border:1px solid rgba(224,48,48,.25);border-radius:12px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff6060" stroke-width="2" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <div>
-          <div style="font-size:.85rem;font-weight:700;color:#ffaaaa;margin-bottom:4px">Negativações encontradas</div>
-          <div style="font-size:.78rem;color:var(--text2);line-height:1.6">Ótimo que você verificou. Agora o advogado vai analisar se as dívidas são indevidas e se você tem direito a indenização. Cada dia que passa é prejuízo.</div>
-        </div>
-      </div>`;
-  } else if (tipo === 'limpo') {
-    data.serasaResultado = 'limpo';
-    alerta.innerHTML = `
-      <div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <div>
-          <div style="font-size:.85rem;font-weight:700;color:#e8d090;margin-bottom:4px">CPF apareceu limpo no Serasa</div>
-          <div style="font-size:.78rem;color:var(--text2);line-height:1.6">Pode existir restrição no SPC, na Boa Vista ou outra empresa. O advogado vai investigar todos os bureaus e identificar o que está bloqueando seu crédito.</div>
-        </div>
-      </div>`;
-  } else {
-    data.serasaResultado = 'naosei';
-    alerta.innerHTML = `
-      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text2)" stroke-width="2" style="flex-shrink:0;margin-top:2px"><circle cx="12" cy="12" r="10"/><polyline points="20 6 9 17 4 12"/></svg>
-        <div>
-          <div style="font-size:.85rem;font-weight:700;color:#fff;margin-bottom:4px">Tudo certo</div>
-          <div style="font-size:.78rem;color:var(--text2);line-height:1.6">O advogado vai analisar sua situação com base nas informações que você fornecer a seguir.</div>
-        </div>
-      </div>`;
-  }
-
-  document.getElementById('btnStep1c').disabled = false;
-  setTimeout(() => alerta.scrollIntoView({behavior:'smooth',block:'nearest'}), 100);
-}
 
 function goToAssistente() {
   const msg = `Olá! Gostaria de falar com o assistente jurídico gratuito da JustHelp.
