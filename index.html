@@ -1345,6 +1345,8 @@ header img { height: 52px; }
   border-radius: 14px; padding: 20px 22px;
   cursor: pointer; transition: all .25s;
   display: flex; align-items: flex-start; gap: 14px;
+  width: 100%; text-align: left; color: var(--text);
+  font-family: 'Montserrat', sans-serif;
 }
 .option-card:hover { border-color: rgba(224,48,48,.3); transform: translateY(-2px); }
 .option-card.selected {
@@ -2383,38 +2385,38 @@ if(isIOS && !isStandalone && !localStorage.getItem('pwa-dismissed')){
     </div>
 
     <div class="options" id="situacaoOptions">
-      <div class="option-card" onclick="selectOption('situacao','indevida',this)">
+      <button type="button" class="option-card" onclick="selectOption('situacao','indevida',this)">
         <div class="opt-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e03030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
         <div class="opt-check"></div>
         <div class="opt-content">
           <h4>Fui negativado indevidamente</h4>
           <p>A dívida não é minha, já foi paga ou recebi sem nenhum aviso prévio</p>
         </div>
-      </div>
-      <div class="option-card" onclick="selectOption('situacao','fraude',this)">
+      </button>
+      <button type="button" class="option-card" onclick="selectOption('situacao','fraude',this)">
         <div class="opt-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e03030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
         <div class="opt-check"></div>
         <div class="opt-content">
           <h4>Fraude no meu CPF</h4>
           <p>Alguém fez uma dívida usando meu nome sem minha autorização</p>
         </div>
-      </div>
-      <div class="option-card" onclick="selectOption('situacao','paga',this)">
+      </button>
+      <button type="button" class="option-card" onclick="selectOption('situacao','paga',this)">
         <div class="opt-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
         <div class="opt-check"></div>
         <div class="opt-content">
           <h4>Dívida já foi paga mas nome continua sujo</h4>
           <p>Quitei a dívida mas o registro ainda aparece no SPC ou Serasa</p>
         </div>
-      </div>
-      <div class="option-card" onclick="selectOption('situacao','limpeza',this)">
+      </button>
+      <button type="button" class="option-card" onclick="selectOption('situacao','limpeza',this)">
         <div class="opt-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
         <div class="opt-check"></div>
         <div class="opt-content">
           <h4>Quero limpar meu nome no SPC ou Serasa</h4>
           <p>Tenho dívida existente e quero remover o registro sem negociar</p>
         </div>
-      </div>
+      </button>
     </div>
 
     <br>
