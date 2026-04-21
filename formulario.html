@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurar meu Crédito — JustHelp</title>
+<link rel="icon" href="https://res.cloudinary.com/dmdaiwkyl/image/upload/v1774485877/inserir_um_subt%C3%ADtuloaAdemir_Rodrigues_nwfdul.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Montserrat',sans-serif;
+  background:#0A1520;
+  color:#E8EDF2;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:28px 16px 60px;
+}
+:root{
+  --red:#C0392B;--red2:#E53E3E;--red3:#A93226;
+  --gold:#F0C040;--gold2:#B8860B;
+  --green:#27AE60;--green2:#2ECC71;
+  --bg2:#0F1E2D;--bg3:#132233;--bg4:#0D1929;
+  --bdr:rgba(255,255,255,0.08);--dim:rgba(232,237,242,0.55);
+}
+
+/* LOGO */
+.logo{margin-bottom:24px}
+.logo img{height:36px}
+
+/* CARD */
+.card{width:100%;max-width:500px;background:var(--bg2);border:1px solid var(--bdr);border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+
+/* HEADER */
+.card-head{padding:24px 28px;background:linear-gradient(135deg,#1a0808,var(--red3) 40%,var(--red))}
+.head-logo{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.head-logo img{height:30px}
+.head-oab{font-size:.58rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.2);border-radius:99px;padding:4px 12px}
+.card-head h1{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:2px;color:#fff;line-height:1;margin-bottom:5px}
+.card-head p{font-size:.7rem;color:rgba(255,255,255,.7);line-height:1.55}
+
+/* PROOF BAR */
+.proof-bar{display:flex;background:rgba(0,0,0,.25);border-bottom:1px solid var(--bdr)}
+.pb-i{flex:1;text-align:center;padding:10px 6px;border-right:1px solid var(--bdr)}
+.pb-i:last-child{border-right:none}
+.pb-n{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;color:#fff;line-height:1}
+.pb-n span{color:var(--gold)}
+.pb-l{font-size:.5rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:rgba(232,237,242,.3);margin-top:1px}
+
+/* STEP BAR */
+.step-bar{display:flex;background:var(--bg4);border-bottom:1px solid var(--bdr)}
+.sb{flex:1;text-align:center;padding:9px 4px;font-size:.52rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:rgba(232,237,242,.25);border-right:1px solid var(--bdr);position:relative;transition:.2s}
+.sb:last-child{border-right:none}
+.sb.on{color:#fff;background:rgba(192,57,43,.1)}
+.sb.on::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--red)}
+.sb.ok{color:var(--green)}
+.sb-n{display:block;font-family:'Bebas Neue',sans-serif;font-size:.95rem;line-height:1;margin-bottom:1px}
+
+/* BODY */
+.card-body{padding:22px 26px}
+.step{display:none}
+.step.on{display:block}
+
+/* Subtítulo de seção */
+.sec{font-size:.6rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+
+/* Fields */
+.fg{margin-bottom:12px}
+.fg label{display:block;font-size:.58rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:rgba(232,237,242,.38);margin-bottom:5px}
+.fg input,.fg select,.fg textarea{
+  width:100%;background:var(--bg3);border:1.5px solid var(--bdr);
+  border-radius:8px;padding:11px 13px;color:#E8EDF2;
+  font-size:.82rem;outline:none;font-family:'Montserrat',sans-serif;
+  transition:.2s;-webkit-appearance:none;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--red);background:var(--bg4)}
+.fg select option{background:#132233}
+.fg textarea{resize:none;height:72px;line-height:1.6}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+
+/* Opções clicáveis */
+.opts{display:flex;flex-direction:column;gap:7px;margin-bottom:12px}
+.opt{
+  display:flex;align-items:center;gap:12px;
+  background:var(--bg3);border:1.5px solid var(--bdr);
+  border-radius:8px;padding:11px 14px;
+  cursor:pointer;transition:.15s;
+}
+.opt:hover{border-color:rgba(192,57,43,.35)}
+.opt.sel{border-color:var(--red);background:rgba(192,57,43,.07)}
+.opt-ico{font-size:1.1rem;flex-shrink:0}
+.opt-txt{font-size:.78rem;font-weight:600;color:#E8EDF2}
+.opt-sub{font-size:.64rem;color:var(--dim);margin-top:1px}
+.opt-price{margin-left:auto;text-align:right;flex-shrink:0}
+.opt-price-val{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:#fff;line-height:1}
+.opt-price-val span{font-size:.7rem;color:var(--dim)}
+.opt-price-sub{font-size:.56rem;color:var(--dim);margin-top:1px}
+.opt-tag{background:var(--red);color:#fff;font-size:.5rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
+
+/* Termos */
+.termos-scroll{
+  background:var(--bg4);border:1px solid var(--bdr);border-radius:8px;
+  padding:14px;max-height:180px;overflow-y:auto;
+  font-size:.7rem;color:rgba(232,237,242,.5);line-height:1.75;
+  margin-bottom:12px;
+}
+.termos-scroll h4{color:rgba(232,237,242,.8);font-size:.72rem;font-weight:700;margin:10px 0 4px}
+.termos-scroll h4:first-child{margin-top:0}
+.termos-scroll ul{padding-left:14px}
+.termos-scroll li{margin-bottom:3px}
+.termos-scroll strong{color:rgba(232,237,242,.75)}
+
+.aceite{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:11px 13px;
+  background:rgba(39,174,96,.06);border:1.5px solid rgba(39,174,96,.2);
+  border-radius:8px;cursor:pointer;margin-bottom:14px;transition:.15s;
+}
+.aceite:hover{background:rgba(39,174,96,.1)}
+.aceite input{width:15px;height:15px;accent-color:var(--green);flex-shrink:0;margin-top:1px;cursor:pointer}
+.aceite label{font-size:.72rem;color:rgba(232,237,242,.65);cursor:pointer;line-height:1.5}
+.aceite label strong{color:#fff}
+
+/* Resumo */
+.resumo{background:var(--bg3);border:1px solid var(--bdr);border-radius:10px;padding:14px;margin-bottom:14px}
+.rr{display:flex;justify-content:space-between;align-items:flex-start;font-size:.74rem;padding:5px 0;border-bottom:1px solid var(--bdr);color:var(--dim);gap:10px}
+.rr:last-child{border-bottom:none;color:#fff;font-weight:700;font-size:.84rem;padding-top:9px}
+.rr span:first-child{flex-shrink:0;font-weight:600;color:rgba(232,237,242,.55)}
+.rr span:last-child{text-align:right;color:rgba(232,237,242,.8)}
+.rr.total span:last-child{color:var(--green)}
+.rsec{font-size:.55rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--gold);padding:8px 0 2px;display:block;border-bottom:1px solid var(--bdr);margin-bottom:2px}
+
+/* Status */
+.status{display:flex;align-items:center;gap:7px;padding:9px 12px;background:rgba(39,174,96,.06);border:1px solid rgba(39,174,96,.15);border-radius:8px;font-size:.64rem;font-weight:600;color:var(--green);margin-bottom:12px}
+.sdot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 1.5s infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* PIX */
+.pix-box{text-align:center;padding:4px 0}
+.pix-val{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:2px;color:#fff;margin-bottom:14px}
+.ring-wrap{position:relative;width:72px;height:72px;display:flex;align-items:center;justify-content:center;margin:0 auto 5px}
+.rb{fill:none;stroke:rgba(255,255,255,.07);stroke-width:5}
+.rf{fill:none;stroke:var(--green);stroke-width:5;stroke-linecap:round;stroke-dasharray:195;stroke-dashoffset:0;transform:rotate(-90deg);transform-origin:center;transition:stroke-dashoffset 1s linear,stroke .3s}
+.rf.w{stroke:var(--gold)}.rf.c{stroke:var(--red2)}
+.rlbl{position:absolute;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:1px;color:#fff}
+.rtxt{font-size:.62rem;color:var(--dim);margin-bottom:14px}
+.pix-exp{display:none;padding:8px 0 12px}
+.pix-exp p{font-size:.76rem;color:var(--red2);font-weight:700;margin-bottom:8px}
+.pix-qr{width:148px;height:148px;background:#fff;border-radius:8px;padding:7px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center}
+.pix-chave{font-size:.7rem;color:var(--dim);margin-bottom:5px}
+.pix-chave strong{color:var(--gold)}
+.pix-nota{font-size:.62rem;color:rgba(232,237,242,.3);margin-bottom:16px;line-height:1.5}
+.pix-nota strong{color:rgba(232,237,242,.5)}
+
+/* Botões */
+.btn{width:100%;padding:14px;border:none;border-radius:8px;font-size:.88rem;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;transition:.15s;margin-top:4px}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 5px 18px rgba(192,57,43,.3)}
+.btn-red:hover{background:var(--red2)}
+.btn-red:disabled{opacity:.35;cursor:not-allowed;box-shadow:none}
+.btn-green{background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 5px 18px rgba(39,174,96,.3)}
+.btn-green:hover{background:var(--green2)}
+.btn-regen{background:var(--bg3);border:1px solid var(--bdr);color:rgba(232,237,242,.6);font-size:.72rem;padding:7px 16px;border-radius:8px;cursor:pointer;font-family:'Montserrat',sans-serif}
+.btn-back{background:none;border:none;color:rgba(232,237,242,.3);font-size:.68rem;font-weight:700;cursor:pointer;margin-bottom:14px;font-family:'Montserrat',sans-serif;padding:0;display:flex;align-items:center;gap:4px;transition:.15s}
+.btn-back:hover{color:#E8EDF2}
+.btn-nota{font-size:.58rem;color:rgba(232,237,242,.25);text-align:center;margin-top:8px;line-height:1.5}
+
+/* ADV STRIP */
+.adv-strip{display:flex;align-items:center;gap:12px;padding:13px 26px;background:rgba(0,0,0,.2);border-top:1px solid var(--bdr)}
+.adv-av{width:38px;height:38px;border-radius:50%;overflow:hidden;border:1.5px solid rgba(0,184,212,.3);flex-shrink:0}
+.adv-av img{width:100%;height:100%;object-fit:cover;object-position:top}
+.adv-info{font-size:.64rem;color:rgba(232,237,242,.4);line-height:1.5}
+.adv-info strong{color:rgba(0,184,212,.85);display:block;font-size:.66rem}
+
+@media(max-width:480px){
+  .g2{grid-template-columns:1fr}
+  .g3{grid-template-columns:1fr 1fr}
+  .card-body{padding:18px 18px}
+}
+</style>
+</head>
+<body>
+
+<div class="logo">
+  <img src="https://res.cloudinary.com/dmdaiwkyl/image/upload/v1773170909/LOGO_02_COLOR_1_voxxy3.png" alt="JustHelp">
+</div>
+
+<div class="card">
+
+  <!-- HEADER -->
+  <div class="card-head">
+    <div class="head-logo">
+      <img src="https://res.cloudinary.com/dmdaiwkyl/image/upload/v1773170909/LOGO_02_COLOR_1_voxxy3.png" alt="JustHelp">
+      <span class="head-oab">OAB/DF 51.223</span>
+    </div>
+    <h1>Restauração de Crédito</h1>
+    <p>Processo jurídico completo · Resultado em até 30 dias úteis · 100% digital</p>
+  </div>
+
+  <!-- PROOF -->
+  <div class="proof-bar">
+    <div class="pb-i"><div class="pb-n">847<span>+</span></div><div class="pb-l">restaurados</div></div>
+    <div class="pb-i"><div class="pb-n">R$2M<span>+</span></div><div class="pb-l">resolvidos</div></div>
+    <div class="pb-i"><div class="pb-n">30<span>d</span></div><div class="pb-l">dias úteis</div></div>
+    <div class="pb-i"><div class="pb-n">4.9<span>★</span></div><div class="pb-l">avaliação</div></div>
+  </div>
+
+  <!-- STEP BAR -->
+  <div class="step-bar">
+    <div class="sb on" id="sb1"><span class="sb-n">1</span>Seus dados</div>
+    <div class="sb" id="sb2"><span class="sb-n">2</span>Sua dívida</div>
+    <div class="sb" id="sb3"><span class="sb-n">3</span>Situação</div>
+    <div class="sb" id="sb4"><span class="sb-n">4</span>Pagamento</div>
+    
+  </div>
+
+  <div class="card-body">
+
+    <!-- ══ STEP 1: DADOS PESSOAIS ══ -->
+    <div class="step on" id="s1">
+      <div class="sec">👤 Dados Pessoais</div>
+      <div class="fg"><label>Nome completo *</label><input id="fNome" type="text" placeholder="Como aparece no documento" oninput="v1()"></div>
+      <div class="g2">
+        <div class="fg"><label>CPF *</label><input id="fCpf" type="text" placeholder="000.000.000-00" maxlength="14" oninput="mCPF(this);v1()"></div>
+        <div class="fg"><label>RG *</label><input id="fRg" type="text" placeholder="00.000.000-0" oninput="v1()"></div>
+      </div>
+      <div class="g2">
+        <div class="fg"><label>Data de nascimento *</label><input id="fNasc" type="date" oninput="v1()"></div>
+        <div class="fg"><label>WhatsApp *</label><input id="fWa" type="tel" placeholder="(11) 99999-9999" maxlength="15" oninput="mTel(this);v1()"></div>
+      </div>
+      <div class="fg"><label>E-mail</label><input id="fEmail" type="email" placeholder="seu@email.com (opcional)"></div>
+      <div class="sec" style="margin-top:14px">🏠 Endereço</div>
+      <div class="g2">
+        <div class="fg"><label>CEP *</label><input id="fCep" type="text" placeholder="00000-000" maxlength="9" oninput="mCEP(this);v1()"></div>
+        <div class="fg"><label>Cidade / UF *</label><input id="fCidade" type="text" placeholder="São Paulo / SP" oninput="v1()"></div>
+      </div>
+      <div class="fg"><label>Rua, número, bairro *</label><input id="fEnd" type="text" placeholder="Ex: Rua das Flores, 123, Centro" oninput="v1()"></div>
+      <button class="btn btn-red" id="btn1" disabled onclick="ir(2)">Próximo →</button>
+    </div>
+
+    <!-- ══ STEP 2: DADOS DA DÍVIDA ══ -->
+    <div class="step" id="s2">
+      <button class="btn-back" onclick="ir(1)">← Voltar</button>
+      <div class="sec">💳 Dados da Dívida</div>
+      <div class="fg"><label>Empresa / credor que negativou *</label><input id="fEmp" type="text" placeholder="Ex: Banco Itaú, Claro, C&A..." oninput="v2()"></div>
+      <div class="g2">
+        <div class="fg">
+          <label>Valor da dívida *</label>
+          <select id="fValDiv" onchange="v2()">
+            <option value="">Selecione...</option>
+            <option>Abaixo de R$ 5.000</option>
+            <option>R$ 5.000 a R$ 20.000</option>
+            <option>R$ 20.000 a R$ 50.000</option>
+            <option>Acima de R$ 50.000</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Data da negativação</label>
+          <input id="fDataNeg" type="month">
+        </div>
+      </div>
+      <div class="g2">
+        <div class="fg">
+          <label>Quantidade de restrições *</label>
+          <select id="fQtd" onchange="v2()">
+            <option value="">Selecione...</option>
+            <option>1 restrição</option>
+            <option>2 restrições</option>
+            <option>3 ou mais restrições</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Tipo de dívida *</label>
+          <select id="fTipo" onchange="v2()">
+            <option value="">Selecione...</option>
+            <option>Banco / cartão de crédito</option>
+            <option>Financiamento (carro/imóvel)</option>
+            <option>Telefonia / internet</option>
+            <option>Loja / varejo</option>
+            <option>Financeira / empréstimo</option>
+            <option>Serviços (luz, água, gás)</option>
+            <option>Outro</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label>Número do contrato / protocolo</label><input id="fContrato" type="text" placeholder="Opcional — se souber"></div>
+      <button class="btn btn-red" id="btn2" disabled onclick="ir(3)">Próximo →</button>
+    </div>
+
+    <!-- ══ STEP 3: SITUAÇÃO ATUAL ══ -->
+    <div class="step" id="s3">
+      <button class="btn-back" onclick="ir(2)">← Voltar</button>
+      <div class="sec">📋 Situação Atual</div>
+      <div class="fg">
+        <label>Já tentou resolver essa dívida antes? *</label>
+        <select id="fTentou" onchange="v3()">
+          <option value="">Selecione...</option>
+          <option>Não, é a primeira vez que busco solução</option>
+          <option>Sim, tentei negociar diretamente com a empresa</option>
+          <option>Sim, tentei via Serasa Limpa Nome ou similar</option>
+          <option>Sim, usei outro serviço jurídico antes</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Tem algum processo judicial em andamento? *</label>
+        <select id="fProc" onchange="v3()">
+          <option value="">Selecione...</option>
+          <option>Não tenho nenhum processo</option>
+          <option>Sim, sou réu em processo</option>
+          <option>Sim, já sou autor em outro processo</option>
+          <option>Não tenho certeza</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Por que restaurar o crédito é urgente para você? *</label>
+        <select id="fUrgente" onchange="v3()">
+          <option value="">Selecione...</option>
+          <option>Preciso financiar um carro ou imóvel</option>
+          <option>Perdi ou estou perdendo emprego por causa da restrição</option>
+          <option>Quero abrir empresa ou conseguir crédito empresarial</option>
+          <option>Preciso alugar um imóvel</option>
+          <option>Quero recuperar minha tranquilidade e dignidade</option>
+          <option>Quero cartão de crédito com limite</option>
+          <option>Outro motivo</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>A dívida já foi paga, está em negociação ou ainda em aberto? *</label>
+        <select id="fStatus" onchange="v3()">
+          <option value="">Selecione...</option>
+          <option>Em aberto — não paguei nada</option>
+          <option>Parcialmente paga</option>
+          <option>Já quitada mas o nome ainda está sujo</option>
+          <option>Negociando parcelamento</option>
+          <option>Dívida que não é minha (fraude / erro)</option>
+        </select>
+      </div>
+      <div class="fg"><label>Observações adicionais</label><textarea id="fObs" placeholder="Algum detalhe importante sobre o seu caso..."></textarea></div>
+      <button class="btn btn-red" id="btn3" disabled onclick="ir(4)">Próximo →</button>
+    </div>
+
+    <!-- ══ STEP 4: PAGAMENTO + TERMOS ══ -->
+    <div class="step" id="s4">
+      <button class="btn-back" onclick="ir(3)">← Voltar</button>
+      <div class="sec">💰 Forma de Pagamento</div>
+
+      <div class="opts" id="opts-pgto">
+        <div class="opt rec" id="opt-avista" onclick="selPgto('avista')">
+          <div class="opt-ico">⚡</div>
+          <div>
+            <div class="opt-txt">À Vista — PIX <span class="opt-tag">Melhor preço</span></div>
+            <div class="opt-sub">Pagamento único · Início imediato após confirmação</div>
+          </div>
+          <div class="opt-price">
+            <div class="opt-price-val"><span>R$</span>449<span style="font-size:.9rem">,90</span></div>
+            <div class="opt-price-sub">pagamento único</div>
+          </div>
+        </div>
+        <div class="opt" id="opt-2x" onclick="selPgto('2x')">
+          <div class="opt-ico">📅</div>
+          <div>
+            <div class="opt-txt">Parcelado — 2× PIX</div>
+            <div class="opt-sub">2 parcelas mensais · Total R$ 700,00</div>
+          </div>
+          <div class="opt-price">
+            <div class="opt-price-val"><span>2× R$</span>350</div>
+            <div class="opt-price-sub">R$ 700,00 total</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec" style="margin-top:6px">📄 Termos e Garantias</div>
+      <div class="termos-scroll">
+        <h4>1. Objeto</h4>
+        A JustHelp Assessoria Ltda (CNPJ 65.620.168/0001-45), pelo Dr. Daniel Guimarães Martins (OAB/DF 51.223), presta serviços de assessoria jurídica para <strong>restauração de crédito e remoção de restrições do CPF</strong>, com base nos Arts. 42 e 43 do CDC.
+
+        <h4>2. Prazo</h4>
+        O processo é iniciado em até <strong>48 horas úteis</strong> após confirmação do pagamento e documentação. Prazo máximo de resultado: <strong>30 dias úteis</strong>.
+
+        <h4>3. Garantias</h4>
+        <ul>
+          <li>Se o processo não for iniciado no prazo: <strong>reembolso integral</strong>.</li>
+          <li>Contrato digital enviado ao WhatsApp após pagamento confirmado.</li>
+          <li>Acompanhamento via WhatsApp até a conclusão do processo.</li>
+        </ul>
+
+        <h4>4. Obrigações do Contratante</h4>
+        <ul>
+          <li>Fornecer documentos verdadeiros (RG, CPF, extrato da restrição).</li>
+          <li>Responder às solicitações da equipe em até 48 horas.</li>
+          <li>Manter o WhatsApp ativo e acessível durante o processo.</li>
+        </ul>
+
+        <h4>5. Pagamento</h4>
+        Via PIX para <strong>justhelpadv@gmail.com</strong> (JustHelp Assessoria Ltda). No parcelado, a 2ª parcela vence 30 dias após o 1º pagamento.
+
+        <h4>6. Privacidade (LGPD)</h4>
+        Dados utilizados exclusivamente para condução do processo jurídico, em conformidade com a Lei 13.709/2018.
+
+        <h4>7. Foro</h4>
+        Comarca de São Paulo / SP.
+      </div>
+
+      <div class="aceite" onclick="toggleAceite()">
+        <input type="checkbox" id="chkAceite" onclick="event.stopPropagation();v4()">
+        <label for="chkAceite"><strong>Li e concordo</strong> com os Termos e Garantias. Entendo que o contrato digital completo será enviado ao meu WhatsApp após a confirmação do pagamento.</label>
+      </div>
+
+      <button class="btn btn-red" id="btn4" disabled onclick="finalizarWA()">Ir para o pagamento →</button>
+      <p class="btn-nota">Você será redirecionado ao WhatsApp para combinar o pagamento · Contrato digital incluso</p>
+    </div>
+
+    </div><!-- /card-body -->
+
+  <!-- ADV -->
+  <div class="adv-strip">
+    <div class="adv-av"><img src="https://res.cloudinary.com/dmdaiwkyl/image/upload/v1774017700/IMG_1265_vjdxsq.jpg" alt="Dr. Daniel"></div>
+    <div class="adv-info">
+      <strong>Dr. Daniel Guimarães Martins · OAB/DF 51.223</strong>
+      Especialista em restauração de crédito · 847+ casos · Verificável na OAB
+    </div>
+  </div>
+
+</div><!-- /card -->
+
+<script>
+const WA = '5511917335910';
+const CIRC = 2 * Math.PI * 31;
+const PGTO = {
+  avista: {label:'À Vista — PIX',    total:'R$ 449,90', pix:'449.90', msg:'R$ 449,90 (à vista)'},
+  '2x':   {label:'Parcelado 2× PIX', total:'2× R$ 350,00', pix:'350.00', msg:'2× R$ 350,00 (total R$ 700,00)'},
+};
+const F = {};
+let pgto = 'avista';
+let pixT = null;
+
+// ── NAV ──
+function ir(n){
+  coletarDados();
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('on'));
+  document.getElementById('s'+n).classList.add('on');
+  for(let i=1;i<=4;i++){
+    const el=document.getElementById('sb'+i);
+    el.classList.remove('on','ok');
+    if(i<n) el.classList.add('ok');
+    else if(i===n) el.classList.add('on');
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(n===5){ buildResumo(); gerarPix(); }
+}
+
+function coletarDados(){
+  F.nome=g('fNome'); F.cpf=g('fCpf'); F.rg=g('fRg'); F.nasc=g('fNasc');
+  F.wa=g('fWa'); F.email=g('fEmail'); F.cep=g('fCep'); F.cidade=g('fCidade'); F.end=g('fEnd');
+  F.emp=g('fEmp'); F.valDiv=g('fValDiv'); F.dataNeg=g('fDataNeg');
+  F.qtd=g('fQtd'); F.tipo=g('fTipo'); F.contrato=g('fContrato');
+  F.tentou=g('fTentou'); F.proc=g('fProc'); F.urgente=g('fUrgente');
+  F.status=g('fStatus'); F.obs=g('fObs');
+}
+function g(id){ return (document.getElementById(id)?.value||'').trim(); }
+
+// ── VALIDAÇÕES ──
+function v1(){
+  const ok=g('fNome').length>=3&&g('fCpf').length===14&&g('fRg').length>=5
+    &&g('fNasc')!==''&&g('fWa').replace(/\D/g,'').length>=10
+    &&g('fCep').replace(/\D/g,'').length===8&&g('fCidade').length>=3&&g('fEnd').length>=5;
+  document.getElementById('btn1').disabled=!ok;
+}
+function v2(){
+  const ok=g('fEmp').length>=2&&g('fValDiv')!==''&&g('fQtd')!==''&&g('fTipo')!=='';
+  document.getElementById('btn2').disabled=!ok;
+}
+function v3(){
+  const ok=g('fTentou')!==''&&g('fProc')!==''&&g('fUrgente')!==''&&g('fStatus')!=='';
+  document.getElementById('btn3').disabled=!ok;
+}
+function v4(){
+  const ok=document.getElementById('chkAceite').checked;
+  document.getElementById('btn4').disabled=!ok;
+}
+
+// ── PAGAMENTO ──
+function selPgto(p){
+  pgto=p;
+  document.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
+  document.getElementById('opt-'+p).classList.add('sel');
+  v4();
+}
+
+function toggleAceite(){
+  const cb=document.getElementById('chkAceite');
+  cb.checked=!cb.checked;
+  v4();
+}
+
+// ── RESUMO ──
+function buildResumo(){
+  const p=PGTO[pgto];
+  const nascFmt=F.nasc?new Date(F.nasc+'T12:00:00').toLocaleDateString('pt-BR'):'—';
+  document.getElementById('resumo').innerHTML=`
+    <span class="rsec">Dados Pessoais</span>
+    <div class="rr"><span>Nome</span><span>${F.nome}</span></div>
+    <div class="rr"><span>CPF</span><span>${F.cpf}</span></div>
+    <div class="rr"><span>RG</span><span>${F.rg}</span></div>
+    <div class="rr"><span>Nascimento</span><span>${nascFmt}</span></div>
+    <div class="rr"><span>WhatsApp</span><span>${F.wa}</span></div>
+    <div class="rr"><span>Endereço</span><span>${F.end}, ${F.cidade}</span></div>
+    <span class="rsec">Dívida</span>
+    <div class="rr"><span>Empresa</span><span>${F.emp}</span></div>
+    <div class="rr"><span>Valor</span><span>${F.valDiv}</span></div>
+    <div class="rr"><span>Tipo</span><span>${F.tipo}</span></div>
+    <div class="rr"><span>Restrições</span><span>${F.qtd}</span></div>
+    <div class="rr"><span>Status</span><span>${F.status}</span></div>
+    <span class="rsec">Pagamento</span>
+    <div class="rr total"><span>${p.label}</span><span>${p.total}</span></div>
+  `;
+}
+
+// ── PIX ──
+function gerarPix(){
+  const p=PGTO[pgto];
+  document.getElementById('pixVal').textContent=p.total;
+  document.getElementById('pixExp').style.display='none';
+  const qrEl=document.getElementById('pixQr'); qrEl.innerHTML='';
+  try{
+    new QRCode(qrEl,{
+      text:'00020126580014BR.GOV.BCB.PIX0136justhelpadv@gmail.com5204000053039865406'+p.pix+'5802BR5909JUST HELP6009SAO PAULO62140510CREDITO6304AA99',
+      width:134,height:134
+    });
+  }catch(e){
+    qrEl.innerHTML='<div style="font-size:.64rem;color:#555;padding:16px;text-align:center">PIX:<br><strong>justhelpadv@gmail.com</strong></div>';
+  }
+  if(pixT) clearInterval(pixT);
+  let t=300; ring(t);
+  pixT=setInterval(()=>{ t--; ring(t); if(t<=0){ clearInterval(pixT); pixT=null; document.getElementById('pixExp').style.display='block'; qrEl.innerHTML='<div style="opacity:.3;font-size:.64rem;color:#999;padding:16px;text-align:center">Expirado</div>'; }},1000);
+}
+function ring(t){
+  const m=String(Math.floor(t/60)).padStart(2,'0'),s=String(t%60).padStart(2,'0');
+  document.getElementById('rlbl').textContent=`${m}:${s}`;
+  const f=document.getElementById('rfill');
+  f.style.strokeDashoffset=CIRC*(1-t/300);
+  f.className='rf'+(t<=60?' c':t<=120?' w':'');
+}
+
+// ── FINALIZAR NO WA ──
+function finalizarWA(){
+  coletarDados();
+  const p=PGTO[pgto];
+  const nascFmt=F.nasc?new Date(F.nasc+'T12:00:00').toLocaleDateString('pt-BR'):'—';
+  const msg=
+`✅ *NOVO PEDIDO — JustHelp*
+
+*📋 DADOS PESSOAIS*
+Nome: ${F.nome}
+CPF: ${F.cpf}
+RG: ${F.rg}
+Nascimento: ${nascFmt}
+WhatsApp: ${F.wa}
+Email: ${F.email||'—'}
+Endereço: ${F.end}, ${F.cidade} — CEP: ${F.cep}
+
+*💳 DÍVIDA*
+Empresa: ${F.emp}
+Valor: ${F.valDiv}
+Tipo: ${F.tipo}
+Restrições: ${F.qtd}
+Data negativação: ${F.dataNeg||'—'}
+Contrato/protocolo: ${F.contrato||'—'}
+Status da dívida: ${F.status}
+
+*📋 SITUAÇÃO*
+Já tentou resolver: ${F.tentou}
+Processo em andamento: ${F.proc}
+Urgência: ${F.urgente}
+${F.obs?'Obs: '+F.obs:''}
+
+*💰 PAGAMENTO ESCOLHIDO*
+${p.label} — ${p.total}
+
+✅ Termos aceitos pelo cliente
+📄 Enviar contrato digital após pagamento confirmado.`;
+  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank');
+}
+
+// ── ENVIAR WA ──
+function enviarWA(){
+  const p=PGTO[pgto];
+  const nascFmt=F.nasc?new Date(F.nasc+'T12:00:00').toLocaleDateString('pt-BR'):'—';
+  const msg=
+`✅ *NOVO CONTRATO — JustHelp*
+
+*📋 DADOS PESSOAIS*
+Nome: ${F.nome}
+CPF: ${F.cpf}
+RG: ${F.rg}
+Nascimento: ${nascFmt}
+WhatsApp: ${F.wa}
+Email: ${F.email||'—'}
+Endereço: ${F.end}, ${F.cidade} — CEP: ${F.cep}
+
+*💳 DÍVIDA*
+Empresa: ${F.emp}
+Valor: ${F.valDiv}
+Tipo: ${F.tipo}
+Restrições: ${F.qtd}
+Data negativação: ${F.dataNeg||'—'}
+Contrato/protocolo: ${F.contrato||'—'}
+Status da dívida: ${F.status}
+
+*📋 SITUAÇÃO*
+Já tentou resolver: ${F.tentou}
+Processo em andamento: ${F.proc}
+Urgência: ${F.urgente}
+${F.obs?'Obs: '+F.obs:''}
+
+*💰 PAGAMENTO*
+Forma: ${p.label}
+Valor: ${p.total}
+PIX: justhelpadv@gmail.com
+
+✅ Termos aceitos pelo cliente
+📄 *Enviar contrato digital ao cliente após confirmar o pagamento.*
+
+Segue comprovante em anexo.`;
+  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank');
+}
+
+// ── MÁSCARAS ──
+function mTel(el){ let v=el.value.replace(/\D/g,'').slice(0,11); v=v.length<=10?v.replace(/^(\d{2})(\d)/,'($1) $2').replace(/(\d{4})(\d)/,'$1-$2'):v.replace(/^(\d{2})(\d)/,'($1) $2').replace(/(\d{5})(\d)/,'$1-$2'); el.value=v; }
+function mCPF(el){ let v=el.value.replace(/\D/g,'').slice(0,11); v=v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2'); el.value=v; }
+function mCEP(el){ let v=el.value.replace(/\D/g,'').slice(0,8); v=v.replace(/(\d{5})(\d)/,'$1-$2'); el.value=v; v1(); }
+
+// Init
+selPgto('avista');
+</script>
+</body>
+</html>
