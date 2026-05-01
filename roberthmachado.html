@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JustHelp — Formulário de Indicação</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Montserrat',sans-serif;
+  background:#060d1b;
+  color:#fff;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+:root{
+  --red:#c8102e;
+  --red2:#e8152f;
+  --gold:#c9a84c;
+  --gold2:#e0be6a;
+  --navy:#060d1b;
+  --navy2:#0a1628;
+  --navy3:#0f2040;
+  --green:#25d366;
+  --gray:#7a8fa8;
+  --border:rgba(255,255,255,.08);
+}
+
+/* BG EFFECTS */
+.bg-orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px)}
+.orb1{width:500px;height:500px;top:-100px;left:-100px;background:radial-gradient(ellipse,rgba(200,16,46,.08),transparent 65%)}
+.orb2{width:400px;height:400px;bottom:50px;right:-80px;background:radial-gradient(ellipse,rgba(201,168,76,.06),transparent 65%)}
+
+.grid-bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(201,168,76,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(201,168,76,.03) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+
+/* WRAPPER */
+.wrapper{
+  position:relative;z-index:1;
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;
+  padding:40px 20px 80px;
+}
+
+/* HEADER */
+.header{text-align:center;margin-bottom:40px;animation:fadeUp .7s both}
+.logo{font-size:2.2rem;font-weight:900;letter-spacing:-1px;margin-bottom:6px}
+.logo span:first-child{color:#fff}
+.logo span:last-child{color:var(--red)}
+.header-sub{font-size:.72rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:18px}
+.header-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);border-radius:50px;padding:7px 16px}
+.pill-dot{width:6px;height:6px;border-radius:50%;background:var(--gold2);animation:pulse 2s infinite}
+.header-pill span{font-size:.64rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold2)}
+
+/* CARD */
+.card{
+  background:linear-gradient(160deg,rgba(10,22,40,.95),rgba(15,32,64,.9));
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:20px;
+  width:100%;max-width:560px;
+  overflow:hidden;
+  box-shadow:0 40px 100px rgba(0,0,0,.5);
+  animation:fadeUp .7s .1s both;
+}
+
+.card-head{background:linear-gradient(135deg,var(--red),#8b0000);padding:28px 36px;position:relative;overflow:hidden}
+.card-head-tag{font-size:.58rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:6px}
+.card-head-title{font-size:1.4rem;font-weight:800;line-height:1.2;position:relative;z-index:1}
+.card-head-sub{font-size:.78rem;color:rgba(255,255,255,.7);margin-top:4px;font-weight:300;position:relative;z-index:1}
+
+/* PROGRESS */
+.progress-wrap{padding:0 36px;background:rgba(0,0,0,.2);border-bottom:1px solid var(--border)}
+.progress-steps{display:flex;padding:16px 0;gap:0}
+.step-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;position:relative}
+.step-item:not(:last-child)::after{content:'';position:absolute;top:12px;left:50%;width:100%;height:1.5px;background:rgba(255,255,255,.08);z-index:0}
+.step-item.done:not(:last-child)::after{background:var(--red)}
+.step-num{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;background:rgba(255,255,255,.08);color:var(--gray);position:relative;z-index:1;transition:all .35s;border:1.5px solid rgba(255,255,255,.1)}
+.step-item.active .step-num{background:var(--red);color:#fff;border-color:var(--red);box-shadow:0 0 0 4px rgba(200,16,46,.2)}
+.step-item.done .step-num{background:var(--red);color:#fff;border-color:var(--red)}
+.step-label{font-size:.5rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--gray)}
+
+/* FORM BODY */
+.form-body{padding:32px 36px}
+.form-step{display:none}
+.form-step.active{display:block;animation:fadeUp .35s cubic-bezier(.16,1,.3,1) both}
+.step-title{font-size:1rem;font-weight:800;margin-bottom:4px;letter-spacing:-.3px}
+.step-desc{font-size:.75rem;color:var(--gray);margin-bottom:24px;font-weight:300;line-height:1.6}
+
+/* FIELDS */
+.field{margin-bottom:16px}
+.field label{display:block;font-size:.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:7px}
+.field input, .field select{width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.08);border-radius:10px;padding:13px 16px;color:#fff;font-family:'Montserrat',sans-serif;font-size:.85rem;outline:none;transition:all .2s}
+.field input:focus, .field select:focus{border-color:rgba(200,16,46,.5);background:rgba(200,16,46,.04)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field-err{font-size:.62rem;color:#ff6060;margin-top:5px;display:none;align-items:center;gap:4px}
+.field-err.show{display:flex}
+
+/* INFLUENCER CARD */
+.influencer-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:16px}
+.inf-card{
+  background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.08);
+  border-radius:12px;padding:14px 16px;cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;gap:12px;
+}
+.inf-card.sel{border-color:var(--red);background:rgba(200,16,46,.1);border-left:3px solid var(--red)}
+.inf-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--red),var(--navy3))}
+.inf-name{font-size:.8rem;font-weight:700;margin-bottom:1px}
+.inf-handle{font-size:.62rem;color:var(--gray)}
+.inf-check{width:16px;height:16px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);margin-left:auto;position:relative}
+.inf-card.sel .inf-check{background:var(--red);border-color:var(--red)}
+.inf-card.sel .inf-check::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:.5rem;color:#fff}
+
+/* PROMO */
+.promo-wrap{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:12px;padding:16px;margin-bottom:16px}
+.promo-label{font-size:.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold2);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.promo-input-wrap{position:relative}
+.promo-input-wrap input{padding-left:44px;letter-spacing:2px;text-transform:uppercase;font-weight:700}
+.promo-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%)}
+.promo-badge{display:none;position:absolute;right:12px;top:50%;transform:translateY(-50%);background:var(--green);color:#fff;font-size:.55rem;font-weight:800;padding:3px 8px;border-radius:20px}
+.promo-badge.show{display:block}
+
+/* SITUATION */
+.situacao-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.sit-opt{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.08);border-radius:10px;padding:13px 16px;cursor:pointer;transition:.2s}
+.sit-opt.sel{border-color:var(--red);background:rgba(200,16,46,.09);border-left:3px solid var(--red)}
+.sit-txt h4{font-size:.8rem;font-weight:700;margin-bottom:2px}
+.sit-txt p{font-size:.68rem;color:var(--gray);font-weight:300}
+.sit-chk{width:16px;height:16px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);margin-left:auto;position:relative}
+.sit-opt.sel .sit-chk{background:var(--red);border-color:var(--red)}
+
+/* SUMMARY & BUTTONS */
+.resumo{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:18px 20px;margin-bottom:16px}
+.resumo-row{display:flex;justify-content:space-between;gap:10px;font-size:.78rem;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.btn-primary{width:100%;background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;font-size:.88rem;font-weight:700;padding:15px;border-radius:50px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 6px 24px rgba(200,16,46,.35)}
+.btn-primary:disabled{opacity:.35;cursor:not-allowed}
+.btn-wa{width:100%;background:linear-gradient(135deg,#25d366,#1db954);color:#fff;font-size:.92rem;font-weight:700;padding:16px;border-radius:50px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;animation:pulseG 2.5s infinite}
+.btn-back{background:none;border:none;color:rgba(255,255,255,.4);font-size:.72rem;font-weight:600;cursor:pointer;margin-bottom:18px}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulseG{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,0.4)}70%{box-shadow:0 0 0 15px rgba(37,211,102,0)}}
+
+@media(max-width:480px){.form-body{padding:24px 22px}.field-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="bg-orb orb1"></div>
+<div class="bg-orb orb2"></div>
+<div class="grid-bg"></div>
+
+<div class="wrapper">
+
+  <div class="header">
+    <div class="logo"><span>JUST</span><span>HELP</span></div>
+    <div class="header-sub">Assessoria Jurídica Digital</div>
+    <div class="header-pill"><div class="pill-dot"></div><span>Parceria com Influencers</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <div class="card-head-tag">Formulário de indicação</div>
+      <div class="card-head-title">Limpeza de Nome<br>SPC e Serasa</div>
+      <div class="card-head-sub">Preencha os dados abaixo para ser atendido pela JustHelp</div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-steps">
+        <div class="step-item active" id="step-ind-1"><div class="step-num">1</div><div class="step-label">Influencer</div></div>
+        <div class="step-item" id="step-ind-2"><div class="step-num">2</div><div class="step-label">Dados</div></div>
+        <div class="step-item" id="step-ind-3"><div class="step-num">3</div><div class="step-label">Situação</div></div>
+        <div class="step-item" id="step-ind-4"><div class="step-num">4</div><div class="step-label">Fim</div></div>
+      </div>
+    </div>
+
+    <div class="form-body">
+
+      <div class="form-step active" id="fs1">
+        <div class="step-title">Por qual influencer você veio?</div>
+        <div class="step-desc">Selecione o canal que te trouxe até aqui.</div>
+
+        <div class="influencer-grid">
+          <div class="inf-card" onclick="selecionarInf(this,'Roberth Machado','@oroberthmachado')">
+            <div class="inf-avatar">RM</div>
+            <div><div class="inf-name">Roberth Machado</div><div class="inf-handle">@oroberthmachado</div></div>
+            <div class="inf-check"></div>
+          </div>
+        </div>
+
+        <div class="promo-wrap">
+          <div class="promo-label">🎟️ Código promocional</div>
+          <div class="promo-input-wrap">
+            <input type="text" id="codigoPromo" placeholder="EX: ROBERTH10" oninput="validarCodigo(this)" maxlength="20">
+            <span class="promo-badge" id="promoBadge">✓ Aplicado</span>
+          </div>
+        </div>
+
+        <button class="btn-primary" onclick="avancar(2)" id="btnS1" disabled>Continuar</button>
+      </div>
+
+      <div class="form-step" id="fs2">
+        <button class="btn-back" onclick="voltar(1)">← Voltar</button>
+        <div class="step-title">Seus dados pessoais</div>
+        <div class="field">
+          <label>Nome completo *</label>
+          <input type="text" id="nome" placeholder="Seu nome" oninput="validarS2()">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>CPF *</label>
+            <input type="text" id="cpf" placeholder="000.000.000-00" oninput="mascaraCPF(this);validarS2()">
+            <div class="field-err" id="cpfErr">CPF inválido</div>
+          </div>
+          <div class="field">
+            <label>WhatsApp *</label>
+            <input type="tel" id="wa" placeholder="(11) 99999-9999" oninput="mascaraTel(this);validarS2()">
+          </div>
+        </div>
+        <div class="field">
+          <label>Cidade / Estado *</label>
+          <input type="text" id="cidade" placeholder="Ex: São Paulo / SP" oninput="validarS2()">
+        </div>
+        <button class="btn-primary" onclick="avancar(3)" id="btnS2" disabled>Próximo Passo</button>
+      </div>
+
+      <div class="form-step" id="fs3">
+        <button class="btn-back" onclick="voltar(2)">← Voltar</button>
+        <div class="step-title">Qual é a sua situação?</div>
+        <div class="situacao-opts">
+          <div class="sit-opt" onclick="selecionarSit(this,'indevida')">
+            <div class="sit-txt"><h4>Fui negativado indevidamente</h4><p>Dívida paga ou desconhecida</p></div>
+            <div class="sit-chk"></div>
+          </div>
+          <div class="sit-opt" onclick="selecionarSit(this,'limpeza')">
+            <div class="sit-txt"><h4>Quero limpar meu nome</h4><p>Dívida acima de R$ 20.000 no SPC/Serasa</p></div>
+            <div class="sit-chk"></div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Valor aproximado *</label>
+          <select id="valorDivida" onchange="validarS3()">
+            <option value="">Selecione...</option>
+            <option>Entre R$ 20.000 e R$ 50.000</option>
+            <option>Acima de R$ 50.000</option>
+          </select>
+        </div>
+        <button class="btn-primary" onclick="avancar(4)" id="btnS3" disabled>Finalizar Análise</button>
+      </div>
+
+      <div class="form-step" id="fs4">
+        <div class="step-title">Tudo pronto!</div>
+        <div class="resumo">
+          <div class="resumo-row"><span>Nome:</span><b id="rNome"></b></div>
+          <div class="resumo-row"><span>WhatsApp:</span><b id="rWa"></b></div>
+          <div class="resumo-row"><span>Influencer:</span><b id="rInf" style="color:var(--gold2)"></b></div>
+        </div>
+        <button class="btn-wa" onclick="enviarWA()">Falar com a JustHelp Agora</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+const D = { influencer:'', handle:'', codigo:'', nome:'', cpf:'', wa:'', cidade:'', situacao:'', valor:'' };
+const codigoMap = { 'Roberth Machado': 'ROBERTH10' };
+
+function selecionarInf(el, nome, handle){
+  document.querySelectorAll('.inf-card').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  D.influencer = nome; D.handle = handle;
+  document.getElementById('btnS1').disabled = false;
+  
+  const cupom = codigoMap[nome] || '';
+  document.getElementById('codigoPromo').value = cupom;
+  D.codigo = cupom;
+  document.getElementById('promoBadge').classList.toggle('show', cupom !== '');
+}
+
+function validarCodigo(el){
+  D.codigo = el.value.trim().toUpperCase();
+  document.getElementById('promoBadge').classList.toggle('show', D.codigo.length >= 3);
+}
+
+function avancar(n){
+  document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('fs'+n).classList.add('active');
+  document.querySelectorAll('.step-item').forEach((s, i) => {
+    s.classList.toggle('active', i+1 === n);
+    s.classList.toggle('done', i+1 < n);
+  });
+  if(n===4){
+    document.getElementById('rNome').innerText = D.nome;
+    document.getElementById('rWa').innerText = D.wa;
+    document.getElementById('rInf').innerText = D.influencer;
+  }
+}
+
+function voltar(n){ avancar(n); }
+
+function validarS2(){
+  const ok = document.getElementById('nome').value.length > 3 && document.getElementById('wa').value.length > 10;
+  document.getElementById('btnS2').disabled = !ok;
+  if(ok){ D.nome = document.getElementById('nome').value; D.wa = document.getElementById('wa').value; D.cpf = document.getElementById('cpf').value; D.cidade = document.getElementById('cidade').value; }
+}
+
+function selecionarSit(el, val){
+  document.querySelectorAll('.sit-opt').forEach(o => o.classList.remove('sel'));
+  el.classList.add('sel');
+  D.situacao = val;
+  validarS3();
+}
+
+function validarS3(){
+  const ok = D.situacao && document.getElementById('valorDivida').value !== '';
+  document.getElementById('btnS3').disabled = !ok;
+  D.valor = document.getElementById('valorDivida').value;
+}
+
+function mascaraCPF(el){
+  let v = el.value.replace(/\D/g,'').slice(0,11);
+  v = v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');
+  el.value = v;
+}
+
+function mascaraTel(el){
+  let v = el.value.replace(/\D/g,'').slice(0,11);
+  v = v.replace(/^(\d{2})(\d)/,'($1) $2').replace(/(\d{5})(\d)/,'$1-$2');
+  el.value = v;
+}
+
+function enviarWA(){
+  const msg = `Olá! Vim pelo formulário do *${D.influencer}*.\n\n*Nome:* ${D.nome}\n*CPF:* ${D.cpf}\n*Cidade:* ${D.cidade}\n*Dívida:* ${D.valor}\n*Cupom:* ${D.codigo}`;
+  window.open('https://wa.me/551151961831?text=' + encodeURIComponent(msg), '_blank');
+}
+</script>
+</body>
+</html>
